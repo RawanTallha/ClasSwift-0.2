@@ -8,17 +8,22 @@ class user:
   def __str__(self):
     return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\n" 
 
-
 class facultyMember (user):
-    def __init__(self,name, phoneNumber,email, facultyID, department):
+    def __init__(self,name, phoneNumber, email, facultyID, department):
         self.name = name
         self.phoneNumber = phoneNumber
         self.email = email
         self.facultyID = facultyID
         self.department = department
         
-    #def findAlternative(self,buildingNum):
-        
+    def findAlternative(self,linkedlist):
+        current = linkedlist.getHead()
+        i = 0
+        for i in range(linkedlist.get_length()):
+            if current.classroomObj.isAvailable == True:
+                print(f"{current.classroomObj.showClassroom()}\n")
+            i += 1
+            current = current.next       
         
     def __str__(self):
         return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\nfaculty ID: {self.facultyID}\ndepartment: {self.department}"      
@@ -49,7 +54,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def add_node(self, classroomObj):
+    def add_classroomobj(self, classroomObj):
         new_node = Node(classroomObj)
         if self.head is None:
             self.head = new_node
@@ -66,7 +71,7 @@ class LinkedList:
             current = self.head
             count = 1
             while current:
-                print(f"Node {count}: {current.classroomObj}\n")
+                print(f"[{count}] {current.classroomObj}\n")
                 current = current.next
                 count += 1
 
@@ -77,20 +82,28 @@ class LinkedList:
             length += 1
             current = current.next
         return length
+    
+    def getHead(self):
+        return self.head
 
-
+#----------------------testing--------------------------
 # Example usage linke list of classrooms objects testing
 classroom100 = classroom(11,100,30,True,False)
 classroom102 = classroom(11,102,30,True,False)
-classroom103 = classroom(11,103,30,True,False)
+classroom103 = classroom(11,103,30,False,False)
 classroom104 = classroom(11,104,30,True,False)
 
 
 building11 = LinkedList()
-building11.add_node(classroom100)
-building11.add_node(classroom102)
-building11.add_node(classroom103)
-building11.add_node(classroom104)
+building11.add_classroomobj(classroom100)
+building11.add_classroomobj(classroom102)
+building11.add_classroomobj(classroom103)
+building11.add_classroomobj(classroom104)
 
 building11.display()
 print(f"Length: {building11.get_length()}")
+
+# instance of a faculty to test find alternative function
+tata = facultyMember('tata','0505509719','retal.shilli@uj.edu.sa',1000,'computer sience')
+
+tata.findAlternative(building11)
