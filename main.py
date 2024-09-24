@@ -16,14 +16,8 @@ class facultyMember (user):
         self.facultyID = facultyID
         self.department = department
         
-    def findAlternative(self,linkedlist):
-        current = linkedlist.getHead()
-        i = 0
-        for i in range(linkedlist.get_length()):
-            if current.classroomObj.isAvailable == True:
-                print(f"{current.classroomObj.showClassroom()}\n")
-            i += 1
-            current = current.next       
+    #def findAlternative(self,buildingNum):
+        
         
     def __str__(self):
         return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\nfaculty ID: {self.facultyID}\ndepartment: {self.department}"      
@@ -102,8 +96,3 @@ building11.add_classroomobj(classroom104)
 
 building11.display()
 print(f"Length: {building11.get_length()}")
-
-# instance of a faculty to test find alternative function
-tata = facultyMember('tata','0505509719','retal.shilli@uj.edu.sa',1000,'computer sience')
-
-tata.findAlternative(building11)
