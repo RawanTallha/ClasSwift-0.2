@@ -18,8 +18,8 @@ class facultyMember (user):
         self.department = department
         
     #def findAlternative(self,buildingNum):
-        
-        
+
+
     def __str__(self):
         return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\nfaculty ID: {self.facultyID}\ndepartment: {self.department}"      
 
@@ -94,3 +94,6 @@ building11.add_node(classroom104)
 
 building11.display()
 print(f"Length: {building11.get_length()}")
+
+        #hams
+print ("hams testing")
