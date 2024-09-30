@@ -1,5 +1,5 @@
 
-class user:
+class User:
   def __init__(self, name, phoneNumber, email):
     self.name = name
     self.phoneNumber = phoneNumber
@@ -8,102 +8,84 @@ class user:
   def __str__(self):
     return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\n" 
 
-class facultyMember (user):
+class FacultyMember (User):
     def __init__(self,name, phoneNumber, email, facultyID, department):
         self.name = name
         self.phoneNumber = phoneNumber
         self.email = email
         self.facultyID = facultyID
         self.department = department
-        
-    def findAlternative(self,linkedlist):
-        current = linkedlist.getHead()
-        i = 0
-        for i in range(linkedlist.get_length()):
-            if current.classroomObj.isAvailable == True:
-                print(f"{current.classroomObj.showClassroom()}\n")
-            i += 1
-            current = current.next       
-        
+              
     def __str__(self):
         return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\nfaculty ID: {self.facultyID}\ndepartment: {self.department}"      
 
-class classroom:
-    def __init__(self, buildingNo, classroomNo, capacity, isAvailable, isALab):
+class Building:
+    def __init__(self, buildingNo, location, numOfFloors, numOfClassrooms, capacity, accesible):
         self.buildingNo = buildingNo
+        self.location = location 
+        self.numOfFloors = numOfFloors
+        self.numOfClassrooms = numOfClassrooms
+        self.capacity = capacity
+        self.accesible = accesible
+        self.classrooms = []
+        
+    def add_classroom(self, Classroom):
+        self.classrooms.append(Classroom)   
+        
+    def display_classrooms(self):
+        print(f"classrooms in {self.buildingNo} are: \n")
+        for classroom in self.classrooms:
+            print(f"{classroom}\n")
+            
+    def find_alternative(self,FacultyMember): 
+        print(f"hello {FacultyMember.name} the available classrooms are: ")
+        for classroom in self.classrooms:
+            if classroom.isAvailable == True:
+                print(classroom.display_classroom_num())
+        picked = input("please type the number of the picked classroom: ")
+        for classroom in self.classrooms:
+            if classroom.isAvailable == True and str(classroom.classroomNo) in str(picked) :
+                classroom.isAvailable = False
+                print(f"classroom number: {classroom.classroomNo} is now booked\nthank you {FacultyMember.name}!")
+                return
+        print("the number you entered is wrong!")
+            
+    def __str__(self):
+        return f"building number: {self.buildingNo}\nlocation: {self.location}\nnumebr of floors: {self.numOfFloors}\nnumber of classrooms: {self.numOfClassrooms}\ncapacity: {self.capacity}\naccesible?: {self.accesible}"
+    
+class Classroom:
+    
+    def __init__(self, classroomNo, capacity, isAvailable, isALab):
         self.classroomNo = classroomNo
         self.capacity = capacity
         self.isAvailable = isAvailable
         self.isALab = isALab
         
-    def showClassroom(self):
-        return f"building number: {self.buildingNo}\nclassroom number: {self.classroomNo}\ncapacity: {self.capacity}\nis available: {self.isAvailable}\nis a lab: {self.isALab}"
-        
     def __str__(self):
+        return f"classroom number: {self.classroomNo}\ncapacity: {self.capacity}\nis available?: {self.isAvailable}\nis a lab?: {self.isALab}"
+        
+    def display_classroom_num(self):
         return f"classroom number: {self.classroomNo}"
 
-
-# linked list to store objeects of classrooms class here
-
-class Node:
-    def __init__(self, classroomObj):
-        self.classroomObj = classroomObj
-        self.next = None
-        
-class LinkedList:
-    def __init__(self):
-        self.head = None
-
-    def add_classroomobj(self, classroomObj):
-        new_node = Node(classroomObj)
-        if self.head is None:
-            self.head = new_node
-        else:
-            current = self.head
-            while current.next:
-                current = current.next
-            current.next = new_node
-
-    def display(self): #to print the linked list
-        if self.head is None:	
-            print("Linked list is empty.")
-        else:
-            current = self.head
-            count = 1
-            while current:
-                print(f"[{count}] {current.classroomObj}\n")
-                current = current.next
-                count += 1
-
-    def get_length(self):
-        length = 0
-        current = self.head
-        while current:
-            length += 1
-            current = current.next
-        return length
-    
-    def getHead(self):
-        return self.head
-
 #----------------------testing--------------------------
-# Example usage linke list of classrooms objects testing
-classroom100 = classroom(11,100,30,True,False)
-classroom102 = classroom(11,102,30,True,False)
-classroom103 = classroom(11,103,30,False,False)
-classroom104 = classroom(11,104,30,True,False)
 
+building11 = Building("buidling 11","main campus",3,100,2000,True)
 
-building11 = LinkedList()
-building11.add_classroomobj(classroom100)
-building11.add_classroomobj(classroom102)
-building11.add_classroomobj(classroom103)
-building11.add_classroomobj(classroom104)
+classroom101 = Classroom(101,30,True,False)
+classroom102 = Classroom(102,30,True,False)
+classroom103 = Classroom(103,30,False,False)
+classroom104 = Classroom(104,30,True,False)
 
-building11.display()
-print(f"Length: {building11.get_length()}")
+building11.add_classroom(classroom101)
+building11.add_classroom(classroom102)
+building11.add_classroom(classroom103)
+building11.add_classroom(classroom104)
+print(building11)
+print("\n")
+building11.display_classrooms()
 
-# instance of a faculty to test find alternative function
-tata = facultyMember('tata','0505509719','retal.shilli@uj.edu.sa',1000,'computer sience')
-
-tata.findAlternative(building11)
+tata = FacultyMember('tata','0505509719','retal.shilli@uj.edu.sa',1000,'computer sience') #instances of faculty to test find alternative function for building 11
+lala = FacultyMember("lala","053456789","lala@gmail.com",1115,"computer sience")
+building11.find_alternative(tata)
+print("\n")
+building11.find_alternative(lala)
