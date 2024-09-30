@@ -48,7 +48,7 @@ class Building:
                 classroom.isAvailable = False
                 print(f"classroom number: {classroom.classroomNo} is now booked\nthank you {FacultyMember.name}!")
                 return
-        print("the number you entered is wrong!")
+        print("the classroom you entered is occupied!")
             
     def __str__(self):
         return f"building number: {self.buildingNo}\nlocation: {self.location}\nnumebr of floors: {self.numOfFloors}\nnumber of classrooms: {self.numOfClassrooms}\ncapacity: {self.capacity}\naccesible?: {self.accesible}"
