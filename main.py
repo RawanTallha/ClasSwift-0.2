@@ -1,24 +1,41 @@
-
 class User:
-  def __init__(self, name, phoneNumber, email):
+  def __init__(self, name, phoneNumber, email, department):
     self.name = name
     self.phoneNumber = phoneNumber
     self.email = email
+    self.department = department
 
   def __str__(self):
-    return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\n" 
+    return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\ndepartment: {self.department}" 
 
 class FacultyMember (User):
-    def __init__(self,name, phoneNumber, email, facultyID, department):
-        self.name = name
-        self.phoneNumber = phoneNumber
-        self.email = email
+    def __init__(self,name, phoneNumber, email, department, facultyID):
+        super().__init__(name, phoneNumber, email, department)
         self.facultyID = facultyID
-        self.department = department
               
     def __str__(self):
-        return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\nfaculty ID: {self.facultyID}\ndepartment: {self.department}"      
+        return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\ndepartment: {self.department}\nfaculty ID: {self.facultyID}"      
 
+
+class Maintenance(User):
+    def __init__(self, name, phoneNumber, email, department, maintenanceId):
+        super().__init__(name, phoneNumber, email, department)
+        self.maintenanceId = maintenanceId
+    
+
+    def __str__(self):
+        return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\ndepartment: {self.department}\nmaintenanceId: {self.maintenanceId}"
+
+class Student(User):
+    def __init__(self, name, phoneNumber, email, department, studentID, major):
+        super().__init__(name, phoneNumber, email, department)
+        self.studentID = studentID
+        self.major = major
+        
+    def __str__(self):
+        return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\ndepartment: {self.department}\nstudent ID: {self.studentID}\nmajor: {self.major}"
+    
+    
 class Building:
     def __init__(self, buildingNo, location, numOfFloors, numOfClassrooms, capacity, accesible):
         self.buildingNo = buildingNo
@@ -37,7 +54,7 @@ class Building:
         for classroom in self.classrooms:
             print(f"{classroom}\n")
             
-    def find_alternative(self,FacultyMember): 
+    def find_alternative(self, FacultyMember): # for faculty functionality
         print(f"hello {FacultyMember.name} the available classrooms are: ")
         for classroom in self.classrooms:
             if classroom.isAvailable == True:
@@ -48,7 +65,14 @@ class Building:
                 classroom.isAvailable = False
                 print(f"classroom number: {classroom.classroomNo} is now booked\nthank you {FacultyMember.name}!")
                 return
-        print("the classroom you entered is occupied!")
+        print("The class you have chosen is not available!")
+        
+    def view_available(self, Student): # for student functionality 
+        print(f"hello {Student.name} the available classrooms are:")
+        for classroom in self.classrooms:
+            if classroom.isAvailable == True:
+                print(classroom.display_classroom_num())
+        
             
     def __str__(self):
         return f"building number: {self.buildingNo}\nlocation: {self.location}\nnumebr of floors: {self.numOfFloors}\nnumber of classrooms: {self.numOfClassrooms}\ncapacity: {self.capacity}\naccesible?: {self.accesible}"
@@ -67,8 +91,32 @@ class Classroom:
     def display_classroom_num(self):
         return f"classroom number: {self.classroomNo}"
 
-#----------------------testing--------------------------
 
+class Report:
+    def __init__(self,reportId, classroomNo, date, issueType, problemDesc, User, status='In Progress'):  #i removed image path for now
+        self.reportId = reportId
+        self.classroomNo = classroomNo
+        self.date = date
+        self.issueType = issueType
+        self.problemDesc = problemDesc
+        self.status = status
+        self.User = User
+     #  self.imgpath = imgpath
+    
+    def updateStatus(self, reportId, new_status):
+        if new_status.lower() == "issue solved":
+            self.status = "Issue Solved"
+        elif new_status.lower() == "in progress":
+            self.status = "In Progress"
+        else:
+            print("Invalid status provided. Status remains unchanged.")
+
+
+    def __str__(self):
+        return f"reportId: {self.reportId}\nIssuer: {self.User.name}\nclassroomNo: {self.classroomNo}\ndate: {self.date}\nissueType: {self.issueType}\nproblemDesc: {self.problemDesc}"
+
+#----------------------testing sprint 1 (find alternative)--------------------------
+'''
 building11 = Building("buidling 11","main campus",3,100,2000,True)
 
 classroom101 = Classroom(101,30,True,False)
@@ -84,8 +132,43 @@ print(building11)
 print("\n")
 building11.display_classrooms()
 
-tata = FacultyMember('tata','0505509719','retal.shilli@uj.edu.sa',1000,'computer sience') #instances of faculty to test find alternative function for building 11
-lala = FacultyMember("lala","053456789","lala@gmail.com",1115,"computer sience")
+tata = FacultyMember('tata','0505509719','retal.shilli@uj.edu.sa','computer sience',1000) #instances of faculty to test find alternative function for building 11
+lala = FacultyMember("lala","053456789","lala@gmail.com",'computer sience',1115)
 building11.find_alternative(tata)
 print("\n")
-building11.find_alternative(lala)
+building11.find_alternative(lala) 
+'''
+#----------------------testing sprint 2 ----------------------------------------------------
+print("------------testing for reports and reporting (maintenance)-----------------")
+lana = FacultyMember("Lana","0506616414","lnln@gmail.com",2222,"Software Engineering")
+temp = Report('1234', '21', '27-10-2024', 'technology', 'the projector does not work',lana)
+print(temp)
+print("\n")
+#test for update status of report
+temp2 = Report(1111, "A101", "2024-10-26", "Electrical", "Broken light", lana)
+print(temp2.status)  # should be: In Progress
+
+temp2.updateStatus(1111, "Issue Solved")
+print(temp2.status)  # should be: Issue Solved
+
+temp2.updateStatus(1111, "invalid status")  
+print(temp2.status)  # should be: Issue Solved (unchanged)
+print("\n")
+print("------------testing for view availability (student view)------------------")
+
+retal = Student("retal shilli","0569590127","tata@gmail.com","computer science","2211432","software eng")
+print(retal)
+print("\n")
+building11 = Building("buidling 11","main campus",3,100,2000,True)
+
+classroom101 = Classroom(101,30,True,False)
+classroom102 = Classroom(102,30,True,False)
+classroom103 = Classroom(103,30,False,False)
+classroom104 = Classroom(104,30,True,False)
+
+building11.add_classroom(classroom101)
+building11.add_classroom(classroom102)
+building11.add_classroom(classroom103)
+building11.add_classroom(classroom104)
+
+building11.view_available(retal)
