@@ -4,16 +4,13 @@ import 'package:classwift/card/report_history_card.dart';
 import 'package:flutter/material.dart';
 
 class history_page extends StatelessWidget {
-  const history_page({super.key});
+  const history_page(String s, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
          title: Text('Reports History'),
-         actions: [
-           IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios))
-         ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),

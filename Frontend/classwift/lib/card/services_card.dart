@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ServicesCard extends StatelessWidget {
   final iconImagePath;
   final String serviceName;
-// final pageName;
+final pageName;
   final String pageTitle;
   final String buttonText;
 
@@ -12,7 +12,7 @@ class ServicesCard extends StatelessWidget {
   ServicesCard({
     required this.iconImagePath,
     required this.serviceName,
-    // required this.pageName,
+    required this.pageName,
     required this.pageTitle,
     required this.buttonText,
   });
@@ -43,7 +43,7 @@ class ServicesCard extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return services_page(title: pageTitle);
+                    return pageName;
                   }));
                 },
                 child: Text(buttonText),

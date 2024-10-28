@@ -2,6 +2,9 @@
 
 import 'package:classwift/card/event_card.dart';
 import 'package:classwift/card/services_card.dart';
+import 'package:classwift/pages/history_page.dart';
+import 'package:classwift/pages/report_page.dart';
+import 'package:classwift/pages/services_page.dart';
 // import 'package:classwift/pages/services_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,11 +20,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 237, 243, 250),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.emergency), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: ''),
-      ]),
+      // bottomNavigationBar: BottomNavigationBar(items: [
+      //   BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+      //   BottomNavigationBarItem(icon: Icon(Icons.emergency), label: ''),
+      //   BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: ''),
+      // ]),
       body: SafeArea(
         child: SingleChildScrollView(
           // Make the whole body scrollable
@@ -144,18 +147,21 @@ class _HomePageState extends State<HomePage> {
                     iconImagePath: 'lib/assets/users-class.png',
                     pageTitle: 'View Availability',
                     buttonText: 'View now!',
+                    pageName: services_page(title: 'View Availability'),
                   ),
                   ServicesCard(
                     serviceName: 'Report an issue',
                     iconImagePath: 'lib/assets/file-edit.png',
                     pageTitle: 'Reports',
                     buttonText: 'file a report',
+                    pageName: ReportPage('Report an Issue'),
                   ),
                   ServicesCard(
                     serviceName: 'History',
                     iconImagePath: 'lib/assets/time-past.png',
                     pageTitle: 'History',
                     buttonText: 'review history',
+                    pageName: history_page('Reports History'),
                   ),
                 ],
               ),
