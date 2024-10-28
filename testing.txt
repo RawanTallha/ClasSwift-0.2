@@ -1,0 +1,23 @@
+#----------------------testing sprint 1 (find alternative)--------------------------
+'''
+building11 = Building("buidling 11","main campus",3,100,2000,True)
+
+classroom101 = Classroom(101,1,30,True,False)
+classroom102 = Classroom(102,1,30,True,False)
+classroom103 = Classroom(103,1,30,False,False)
+classroom104 = Classroom(104,1,30,True,False)
+
+building11.add_classroom(classroom101)
+building11.add_classroom(classroom102)
+building11.add_classroom(classroom103)
+building11.add_classroom(classroom104)
+print(building11)
+print("\n")
+building11.display_classrooms()
+
+tata = FacultyMember('tata','0505509719','retal.shilli@uj.edu.sa','computer sience',1000) #instances of faculty to test find alternative function for building 11
+lala = FacultyMember("lala","053456789","lala@gmail.com",'computer sience',1115)
+building11.find_alternative(tata)
+print("\n")
+building11.find_alternative(lala) 
+'''
