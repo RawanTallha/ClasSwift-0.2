@@ -71,7 +71,8 @@ class Building:
         print(f"hello {Student.name} the available classrooms are:")
         for classroom in self.classrooms:
             if classroom.isAvailable == True:
-                print(classroom.display_classroom_num())
+                print(classroom.__str__())
+                print("\n")
         
             
     def __str__(self):
@@ -79,14 +80,15 @@ class Building:
     
 class Classroom:
     
-    def __init__(self, classroomNo, capacity, isAvailable, isALab):
+    def __init__(self, classroomNo, floor, capacity, isAvailable, isALab):
         self.classroomNo = classroomNo
+        self.floor = floor
         self.capacity = capacity
         self.isAvailable = isAvailable
         self.isALab = isALab
         
     def __str__(self):
-        return f"classroom number: {self.classroomNo}\ncapacity: {self.capacity}\nis available?: {self.isAvailable}\nis a lab?: {self.isALab}"
+        return f"classroom number: {self.classroomNo}\nfloor: {self.floor}\ncapacity: {self.capacity}\nis available?: {self.isAvailable}\nis a lab?: {self.isALab}"
         
     def display_classroom_num(self):
         return f"classroom number: {self.classroomNo}"
@@ -119,10 +121,10 @@ class Report:
 '''
 building11 = Building("buidling 11","main campus",3,100,2000,True)
 
-classroom101 = Classroom(101,30,True,False)
-classroom102 = Classroom(102,30,True,False)
-classroom103 = Classroom(103,30,False,False)
-classroom104 = Classroom(104,30,True,False)
+classroom101 = Classroom(101,1,30,True,False)
+classroom102 = Classroom(102,1,30,True,False)
+classroom103 = Classroom(103,1,30,False,False)
+classroom104 = Classroom(104,1,30,True,False)
 
 building11.add_classroom(classroom101)
 building11.add_classroom(classroom102)
@@ -140,12 +142,12 @@ building11.find_alternative(lala)
 '''
 #----------------------testing sprint 2 ----------------------------------------------------
 print("------------testing for reports and reporting (maintenance)-----------------")
-lana = FacultyMember("Lana","0506616414","lnln@gmail.com",2222,"Software Engineering")
-temp = Report('1234', '21', '27-10-2024', 'technology', 'the projector does not work',lana)
+lana = FacultyMember("Lana","0506616414","lnln@gmail.com","Software Engineering",2222)
+temp = Report(1234, 21, '27-10-2024', 'technology', 'the projector does not work',lana)
 print(temp)
 print("\n")
 #test for update status of report
-temp2 = Report(1111, "A101", "2024-10-26", "Electrical", "Broken light", lana)
+temp2 = Report(1111, 101, "2024-10-26", "Electrical", "Broken light", lana)
 print(temp2.status)  # should be: In Progress
 
 temp2.updateStatus(1111, "Issue Solved")
@@ -156,15 +158,15 @@ print(temp2.status)  # should be: Issue Solved (unchanged)
 print("\n")
 print("------------testing for view availability (student view)------------------")
 
-retal = Student("retal shilli","0569590127","tata@gmail.com","computer science","2211432","software eng")
+retal = Student("retal shilli","0569590127","tata@gmail.com","computer science",2211432,"software eng")
 print(retal)
 print("\n")
 building11 = Building("buidling 11","main campus",3,100,2000,True)
 
-classroom101 = Classroom(101,30,True,False)
-classroom102 = Classroom(102,30,True,False)
-classroom103 = Classroom(103,30,False,False)
-classroom104 = Classroom(104,30,True,False)
+classroom101 = Classroom(101,1,30,True,False)
+classroom102 = Classroom(102,1,30,True,False)
+classroom103 = Classroom(103,1,30,False,False)
+classroom104 = Classroom(104,1,30,True,False)
 
 building11.add_classroom(classroom101)
 building11.add_classroom(classroom102)
