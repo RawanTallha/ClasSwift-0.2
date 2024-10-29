@@ -1,20 +1,21 @@
+import 'package:classwift/pages/NavigationBarScreen.dart';
 import 'package:flutter/material.dart';
 // Import your HomePage
 import 'home_page.dart'; //path of homepage
 
-class Login_page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login Page',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginPage(),
-    );
-  }
-}
+// class Login_page extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Login Page',
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: LoginPage(),
+//     );
+//   }
+// }
 
 class LoginPage extends StatelessWidget {
   final TextEditingController idController = TextEditingController();
@@ -36,7 +37,7 @@ class LoginPage extends StatelessWidget {
               Align(
                 alignment: Alignment.topRight,
                 child: Image.asset(
-                  'assets/logo.png',
+                  'lib/assets/logo.png',
                   width: 100,
                   height: 100,
                 ),
@@ -86,10 +87,10 @@ class LoginPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return HomePage(); // Ensure this matches the constructor of your HomePage
+                    return NavigationBarScreen(); // Ensure this matches the constructor of your HomePage
                   }));
                 },
-                child: Text('Login'),
+                child: Text('Login', style: TextStyle(fontSize: 18, color: Colors.white,),),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF81B2DD),
                 ),
