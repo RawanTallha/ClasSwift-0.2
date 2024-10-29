@@ -17,20 +17,16 @@ class EventCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 25.0),
       child: Card(
-        child: Container(
-          decoration: BoxDecoration(
-              color: Color.fromARGB(255, 226, 230, 221),
-              borderRadius: BorderRadius.circular(12)),
           child: Column(children: [
             // event image/ add
             Expanded(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  eventImagePath,
-                  height: 200,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    eventImagePath, // Allow the image to fill available width
+                    fit: BoxFit
+                        .cover, // Ensures the image covers the area without distortion
+                  )),
             ),
 
             SizedBox(height: 15),
@@ -42,10 +38,10 @@ class EventCard extends StatelessWidget {
             ),
 
             // event description
-            Text(eventDesc),
+            //Text(eventDesc),
           ]),
         ),
-      ),
+      //),
     );
   }
 }

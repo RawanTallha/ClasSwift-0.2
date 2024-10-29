@@ -19,36 +19,43 @@ final pageName;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20), // space between each card
-
-      child: Card(
-        child: Container(
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Color.fromARGB(255, 255, 255, 255),
-          ),
-          child: Row(
-            children: [
-              Image.asset(
-                iconImagePath,
-                height: 40,
-              ),
-              SizedBox(width: 10),
-              Text(
-                serviceName,
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return pageName;
-                  }));
-                },
-                child: Text(buttonText),
-              ),
-            ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return pageName;
+        }));
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20), // space between each card
+      
+        child: Card(
+          child: Container(
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Color.fromARGB(255, 255, 255, 255),
+            ),
+            child: Row(
+              children: [
+                Image.asset(
+                  iconImagePath,
+                  height: 40,
+                ),
+                SizedBox(width: 10),
+                Text(
+                  serviceName,
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
+                // TextButton(
+                //   onPressed: () {
+                //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+                //       return pageName;
+                //     }));
+                //   },
+                //   child: Text(buttonText),
+                // ),
+              ],
+            ),
           ),
         ),
       ),

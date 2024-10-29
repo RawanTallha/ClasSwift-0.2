@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:classwift/card/event_card.dart';
+import 'package:classwift/card/report_history_card.dart';
 import 'package:classwift/card/services_card.dart';
 import 'package:classwift/pages/history_page.dart';
 import 'package:classwift/pages/report_page.dart';
@@ -217,25 +218,70 @@ class _HomePageState extends State<HomePage> {
 
             SizedBox(height: 25),
 
-            // Another section for events, if needed
-            Container(
-              height: 200, // Set height for horizontal ListView
-              child: ListView(
-                scrollDirection: Axis.horizontal,
+            // Another divider
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  EventCard(
-                      eventImagePath: 'lib/assets/some-event.png',
-                      eventOrganizer: 'GDGUJ',
-                      eventDesc:
-                          'some workshop by the google developer group(s?)'),
-                  EventCard(
-                      eventImagePath: 'lib/assets/game-event.png',
-                      eventOrganizer: 'GDGUJ',
-                      eventDesc:
-                          'some workshop by the google developer group(s?)'),
+                  Text(
+                    'Recents',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Text(
+                    'See all',
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
                 ],
               ),
             ),
+
+            // Horizontal ListView for recents
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                height: 200, // Set height for horizontal ListView
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ReportHistoryCard(
+              reportBuilding: 12,
+              reportDate: '12/12/1222',
+              reportDescribtion: 'idk',
+              reportFloor: 1,
+              reportID: '1020',
+              reportIssue: 'many',
+              reportRoomNo: 102
+                        ),
+                        ReportHistoryCard(
+              reportBuilding: 12,
+              reportDate: '12/12/1222',
+              reportDescribtion: 'idk',
+              reportFloor: 1,
+              reportID: '1020',
+              reportIssue: 'many',
+              reportRoomNo: 102
+                        ),
+                        ReportHistoryCard(
+              reportBuilding: 12,
+              reportDate: '12/12/1222',
+              reportDescribtion: 'idk',
+              reportFloor: 1,
+              reportID: '1020',
+              reportIssue: 'many',
+              reportRoomNo: 102
+                        ),
+                  ],
+                ),
+              ),
+            ),
+
+
           ]),
         ),
       ),
