@@ -21,11 +21,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 237, 243, 250),
-      // bottomNavigationBar: BottomNavigationBar(items: [
-      //   BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-      //   BottomNavigationBarItem(icon: Icon(Icons.emergency), label: ''),
-      //   BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: ''),
-      // ]),
       body: SafeArea(
         child: SingleChildScrollView(
           // Make the whole body scrollable
@@ -53,18 +48,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
 
-                  // profile pic
-                  // Container(
-                  //     padding: EdgeInsets.all(12),
-                  //     decoration: BoxDecoration(
-                  //       color: Colors.grey[100],
-                  //       borderRadius: BorderRadius.circular(30),
-                  //     ),
-                  //     child: Icon(
-                  //       Icons.person,
-                  //       color: Colors.grey[400],
-                  //     )
-                  //     ),
+                  // logo
                   Image.asset(
                     'lib/assets/logo.png',
                     height: 45,
@@ -196,23 +180,26 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 25),
 
             // Horizontal ListView for events
-            Container(
-              height: 200, // Set height for horizontal ListView
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  EventCard(
-                      eventImagePath: 'lib/assets/some-event.png',
-                      eventOrganizer: 'GDGUJ',
-                      eventDesc:
-                          'some workshop by the google developer group(s?)'),
-                  EventCard(
-                      eventImagePath: 'lib/assets/game-event.png',
-                      eventOrganizer: 'GDGUJ',
-                      eventDesc:
-                          'some workshop by the google developer group(s?)'),
-                  // Add more EventCard widgets as needed
-                ],
+            Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Container(
+                height: 250, // Set height for horizontal ListView
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    EventCard(
+                        eventImagePath: 'lib/assets/some-event.png',
+                        eventOrganizer: 'GDGUJ',
+                        eventDesc:
+                            'some workshop by the google developer group(s?)'),
+                    EventCard(
+                        eventImagePath: 'lib/assets/game-event.png',
+                        eventOrganizer: 'GDGUJ',
+                        eventDesc:
+                            'some workshop by the google developer group(s?)'),
+                    // Add more EventCard widgets as needed
+                  ],
+                ),
               ),
             ),
 
@@ -243,9 +230,9 @@ class _HomePageState extends State<HomePage> {
 
             // Horizontal ListView for recents
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(15.0),
               child: Container(
-                height: 200, // Set height for horizontal ListView
+                height: 280, // Set height for horizontal ListView
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
@@ -280,8 +267,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-
-
           ]),
         ),
       ),

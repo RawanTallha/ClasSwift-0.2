@@ -19,8 +19,8 @@ class MainApp extends StatelessWidget {
       //home: HomePage(),
       //home: services_page(title: 'money talks'),
       //home: history_page(),
-      //home: NavigationBarScreen()
-      home: LoginPage(),
+      home: NavigationBarScreen(), // we start from here
+      //home: LoginPage(),
     );
 
   }
