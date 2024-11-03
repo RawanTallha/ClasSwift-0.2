@@ -17,10 +17,10 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: HomePage(),
-      //home: services_page(title: 'money talks'),
+      home: ServicesPage(title: 'angry hams',),
       //home: history_page(),
       //home: NavigationBarScreen(), // we start from here
-      home: LoginPage(),
+      //home: LoginPage(),
     );
 
   }

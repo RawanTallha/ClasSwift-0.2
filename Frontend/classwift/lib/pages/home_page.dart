@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                     iconImagePath: 'lib/assets/users-class.png',
                     pageTitle: 'View Availability',
                     buttonText: 'View now!',
-                    pageName: services_page(title: 'View Availability'),
+                    pageName: ServicesPage(title: 'View Availability'),
                   ),
                   ServicesCard(
                     serviceName: 'Report an issue',
