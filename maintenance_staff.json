@@ -1,0 +1,74 @@
+{
+    "maintenance_staff": [
+        {
+            "name": "John Doe",
+            "staff_id": "MS001",
+            "department": "Maintenance",
+            "phone": "555-1234",
+            "email": "john.doe@example.com"
+        },
+        {
+            "name": "Jane Smith",
+            "staff_id": "MS002",
+            "department": "Maintenance",
+            "phone": "555-5678",
+            "email": "jane.smith@example.com"
+        },
+        {
+            "name": "Alice Johnson",
+            "staff_id": "MS003",
+            "department": "Maintenance",
+            "phone": "555-9012",
+            "email": "alice.johnson@example.com"
+        },
+        {
+            "name": "Bob Brown",
+            "staff_id": "MS004",
+            "department": "Maintenance",
+            "phone": "555-3456",
+            "email": "bob.brown@example.com"
+        },
+        {
+            "name": "Emily Davis",
+            "staff_id": "MS005",
+            "department": "Maintenance",
+            "phone": "555-7890",
+            "email": "emily.davis@example.com"
+        },
+        {
+            "name": "Michael Wilson",
+            "staff_id": "MS006",
+            "department": "Maintenance",
+            "phone": "555-2345",
+            "email": "michael.wilson@example.com"
+        },
+        {
+            "name": "Sarah Lee",
+            "staff_id": "MS007",
+            "department": "Maintenance",
+            "phone": "555-6789",
+            "email": "sarah.lee@example.com"
+        },
+        {
+            "name": "David Rodriguez",
+            "staff_id": "MS008",
+            "department": "Maintenance",
+            "phone": "555-0123",
+            "email": "david.rodriguez@example.com"
+        },
+        {
+            "name": "Olivia Martinez",
+            "staff_id": "MS009",
+            "department": "Maintenance",
+            "phone": "555-4567",
+            "email": "olivia.martinez@example.com"
+        },
+        {
+            "name": "James Garcia",
+            "staff_id": "MS010",
+            "department": "Maintenance",
+            "phone": "555-8901",
+            "email": "james.garcia@example.com"
+        }
+    ]
+}
