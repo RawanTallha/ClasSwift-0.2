@@ -74,22 +74,6 @@ class _ReportIssuePageState extends State<ReportPage> {
     final file = File(filePath);
     List<dynamic> reports;
 
-  //   if (await file.exists()) {
-  //     final fileContents = await file.readAsString();
-  //     final jsonData = json.decode(fileContents);
-  //     reports = jsonData['reports'] ?? [];
-  //   } else {
-  //     reports = [];
-  //   }
-
-  //   reports.add(reportData);
-  //   final updatedData = json.encode({"reports": reports});
-
-  //   await file.writeAsString(updatedData, mode: FileMode.write);
-  //   print('Report saved successfully');
-  // }
-
-  
     bool isSubmissionSuccessful = false;
 
     try {
@@ -306,7 +290,6 @@ class _ReportIssuePageState extends State<ReportPage> {
   }
 }
 
-
 // FeedbackPopup remains unchanged.
 
 class FeedbackPopup extends StatelessWidget {
@@ -380,4 +363,3 @@ class FeedbackPopup extends StatelessWidget {
     );
   }
 }
-
