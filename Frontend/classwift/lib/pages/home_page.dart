@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                             color: Color.fromARGB(255, 210, 224, 251),
                             borderRadius: BorderRadius.circular(20)),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             // The Phrase
                             Column(
@@ -93,7 +93,9 @@ class _HomePageState extends State<HomePage> {
                                 )
                               ],
                             ),
-
+                            SizedBox(
+                              width: 50,
+                            ),
                             // Picture
                             Image.asset(
                               'lib/assets/college class-amico.png',
@@ -133,33 +135,37 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 25),
 
                   // Horizontal ListView --> Services
-                  Container(
-                    height: 80,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        ServicesCard(
-                          serviceName: 'View availability',
-                          iconImagePath: 'lib/assets/users-class.png',
-                          pageTitle: 'View Availability',
-                          buttonText: 'View now!',
-                          pageName: ServicesPage(title: 'View Availability'),
-                        ),
-                        ServicesCard(
-                          serviceName: 'Report an issue',
-                          iconImagePath: 'lib/assets/file-edit.png',
-                          pageTitle: 'Reports',
-                          buttonText: 'file a report',
-                          pageName: ReportPage(),
-                        ),
-                        ServicesCard(
-                          serviceName: 'History',
-                          iconImagePath: 'lib/assets/time-past.png',
-                          pageTitle: 'History',
-                          buttonText: 'review history',
-                          pageName: history_page('Reports History'),
-                        ),
-                      ],
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
+                    child: Container(
+                      height: 80,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          ServicesCard(
+                            serviceName: 'View availability',
+                            iconImagePath: 'lib/assets/users-class.png',
+                            pageTitle: 'View Availability',
+                            buttonText: 'View now!',
+                            pageName: ServicesPage(title: 'View Availability'),
+                          ),
+                          ServicesCard(
+                            serviceName: 'Report an issue',
+                            iconImagePath: 'lib/assets/file-edit.png',
+                            pageTitle: 'Reports',
+                            buttonText: 'file a report',
+                            pageName: ReportPage(),
+                          ),
+                          ServicesCard(
+                            serviceName: 'History',
+                            iconImagePath: 'lib/assets/time-past.png',
+                            pageTitle: 'History',
+                            buttonText: 'review history',
+                            pageName: history_page('Reports History'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
 
@@ -222,16 +228,26 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Recents',
+                          'Recent reports',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
                         ),
-                        Text(
-                          'See all',
-                          style: TextStyle(
-                            fontSize: 14,
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const history_page(
+                                  ''); // MAKE A POP UP PAGE PLEASE
+                            }));
+                          },
+                          child: Text(
+                            'see all',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w400),
                           ),
                         ),
                       ],
@@ -242,7 +258,7 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Container(
-                      height: 280, // Set height for horizontal ListView
+                      height: 250, // Set height for horizontal ListView
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [

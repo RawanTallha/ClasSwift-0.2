@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ServicesCard extends StatelessWidget {
   final iconImagePath;
   final String serviceName;
-final pageName;
+  final pageName;
   final String pageTitle;
   final String buttonText;
 
@@ -26,8 +26,8 @@ final pageName;
         }));
       },
       child: Padding(
-        padding: const EdgeInsets.only(left: 20), // space between each card
-      
+        padding: const EdgeInsets.only(left: 5), // space between each card
+
         child: Card(
           child: Container(
             padding: EdgeInsets.all(20),
@@ -44,16 +44,8 @@ final pageName;
                 SizedBox(width: 10),
                 Text(
                   serviceName,
-                  style: TextStyle(fontWeight: FontWeight.w600),
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                 ),
-                // TextButton(
-                //   onPressed: () {
-                //     Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //       return pageName;
-                //     }));
-                //   },
-                //   child: Text(buttonText),
-                // ),
               ],
             ),
           ),

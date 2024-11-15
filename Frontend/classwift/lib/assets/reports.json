@@ -41,6 +41,61 @@
             "problemDesc": "test 5, \"full circle\"",
             "status": "Under maintanacecece",
             "user_id": 1004
+        },
+        {
+            "reportId": "DC60",
+            "building": "Building 11",
+            "floor": "3",
+            "classroomNo": "Class 302",
+            "date": "2024-11-16",
+            "issueType": "Plumbing",
+            "problemDesc": "more testing coz i can",
+            "status": "Under maintanacecece",
+            "user_id": 1004
+        },
+        {
+            "reportId": "ZP41",
+            "building": "Building 11",
+            "floor": "1",
+            "classroomNo": "Class 100",
+            "date": "2024-11-16",
+            "issueType": "Plumbing",
+            "problemDesc": "this time im testing the pop up page",
+            "status": "Under maintenance",
+            "user_id": 1004
+        },
+        {
+            "reportId": "IQ60",
+            "building": "Building 11",
+            "floor": "1",
+            "classroomNo": "Class 100",
+            "date": "2024-11-16",
+            "issueType": "Plumbing",
+            "problemDesc": "this time im testing the pop up page",
+            "status": "Under maintenance",
+            "user_id": 1004
+        },
+        {
+            "reportId": "ED17",
+            "building": "Building 11",
+            "floor": "1",
+            "classroomNo": "Class 101",
+            "date": "2024-11-16",
+            "issueType": "Electrical",
+            "problemDesc": "more testing",
+            "status": "Under maintenance",
+            "user_id": 1004
+        },
+        {
+            "reportId": "QO97",
+            "building": "Building 11",
+            "floor": "2",
+            "classroomNo": "Class 201",
+            "date": "2024-11-16",
+            "issueType": "Plumbing",
+            "problemDesc": "hopfully last test",
+            "status": "Under maintanacecece",
+            "user_id": 1004
         }
     ]
 }

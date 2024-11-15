@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:classwift/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class ReportPage extends StatefulWidget {
@@ -73,19 +74,57 @@ class _ReportIssuePageState extends State<ReportPage> {
     final file = File(filePath);
     List<dynamic> reports;
 
-    if (await file.exists()) {
-      final fileContents = await file.readAsString();
-      final jsonData = json.decode(fileContents);
-      reports = jsonData['reports'] ?? [];
-    } else {
-      reports = [];
+  //   if (await file.exists()) {
+  //     final fileContents = await file.readAsString();
+  //     final jsonData = json.decode(fileContents);
+  //     reports = jsonData['reports'] ?? [];
+  //   } else {
+  //     reports = [];
+  //   }
+
+  //   reports.add(reportData);
+  //   final updatedData = json.encode({"reports": reports});
+
+  //   await file.writeAsString(updatedData, mode: FileMode.write);
+  //   print('Report saved successfully');
+  // }
+
+  
+    bool isSubmissionSuccessful = false;
+
+    try {
+      if (await file.exists()) {
+        final fileContents = await file.readAsString();
+        final jsonData = json.decode(fileContents);
+        reports = jsonData['reports'] ?? [];
+      } else {
+        reports = [];
+      }
+
+      reports.add(reportData);
+      final updatedData = json.encode({"reports": reports});
+      await file.writeAsString(updatedData, mode: FileMode.write);
+
+      isSubmissionSuccessful = true;
+    } catch (e) {
+      isSubmissionSuccessful = false;
     }
 
-    reports.add(reportData);
-    final updatedData = json.encode({"reports": reports});
-
-    await file.writeAsString(updatedData, mode: FileMode.write);
-    print('Report saved successfully');
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return FeedbackPopup(
+          message: isSubmissionSuccessful
+              ? 'Your report has been submitted successfully!'
+              : 'There was an error submitting your report. Please try again.',
+          isSuccess: isSubmissionSuccessful,
+          onClose: () {
+            Navigator.of(context).pop();
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -94,112 +133,139 @@ class _ReportIssuePageState extends State<ReportPage> {
       appBar: AppBar(
         title: Text('Reporting an Issue'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          children: [
-            Center(
-              child: Text(
-                'Report form',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
-              ),
+      body: Stack(
+        children: [
+          // Wallpaper background
+          Positioned.fill(
+            child: Image.asset(
+              'lib/assets/wallpapers (1).png',
+              fit: BoxFit.cover, // Cover the entire background
             ),
-            SizedBox(height: 16),
-            Divider(endIndent: 10, indent: 10),
-            SizedBox(height: 40),
-
-            // Building Dropdown
-            _buildDropdown(
-              label: 'Building',
-              value: selectedBuilding,
-              onChanged: (value) {
-                setState(() {
-                  selectedBuilding = value;
-                });
-              },
-              items: ['Building 11'],
-            ),
-            SizedBox(height: 16),
-
-            // Floor Dropdown
-            _buildDropdown(
-              label: 'Floor',
-              value: selectedFloor,
-              onChanged: (value) {
-                setState(() {
-                  selectedFloor = value;
-                  _updateClassNumbers(
-                      value!); // Update classrooms based on floor
-                  selectedClassNo = null; // Reset selected class number
-                });
-              },
-              items: floors,
-            ),
-            SizedBox(height: 16),
-
-            // Class Number Dropdown
-            _buildDropdown(
-              label: 'Class no',
-              value: selectedClassNo,
-              onChanged: (value) {
-                setState(() {
-                  selectedClassNo = value;
-                });
-              },
-              items: classNumbers,
-            ),
-            SizedBox(height: 16),
-
-            // Issue Type Dropdown
-            _buildDropdown(
-              label: 'Issue type',
-              value: selectedIssueType,
-              onChanged: (value) {
-                setState(() {
-                  selectedIssueType = value;
-                });
-              },
-              items: ['Electrical', 'Plumbing', 'Furniture'],
-            ),
-            SizedBox(height: 40),
-
-            // Problem Description with attachment icon
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
+          // Form content with padding
+          Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Column(
               children: [
-                Text(
-                  'Problem description',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                Center(
+                  child: Text(
+                    'Report form',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26,
+                      //color: Colors.white, // Add color for better visibility
+                    ),
+                  ),
                 ),
-                Icon(Icons.attachment),
+                SizedBox(height: 16),
+                Divider(
+                  endIndent: 10,
+                  indent: 10,
+                ),
+                SizedBox(height: 40),
+
+                // Building Dropdown
+                _buildDropdown(
+                  label: 'Building',
+                  value: selectedBuilding,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedBuilding = value;
+                    });
+                  },
+                  items: ['Building 11'],
+                ),
+                SizedBox(height: 16),
+
+                // Floor Dropdown
+                _buildDropdown(
+                  label: 'Floor',
+                  value: selectedFloor,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedFloor = value;
+                      _updateClassNumbers(value!);
+                      selectedClassNo = null;
+                    });
+                  },
+                  items: floors,
+                ),
+                SizedBox(height: 16),
+
+                // Class Number Dropdown
+                _buildDropdown(
+                  label: 'Class no',
+                  value: selectedClassNo,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedClassNo = value;
+                    });
+                  },
+                  items: classNumbers,
+                ),
+                SizedBox(height: 16),
+
+                // Issue Type Dropdown
+                _buildDropdown(
+                  label: 'Issue type',
+                  value: selectedIssueType,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedIssueType = value;
+                    });
+                  },
+                  items: ['Electrical', 'Plumbing', 'Furniture'],
+                ),
+                SizedBox(height: 40),
+
+                // Problem Description with attachment icon
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Problem description',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Icon(
+                      Icons.attachment,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8),
+                TextField(
+                  controller: _descriptionController,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    hintText: 'Write a brief description of the problem',
+                    hintStyle: TextStyle(color: Colors.grey), // Hint text color
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor: Colors.white
+                        .withOpacity(0.8), // Background color with transparency
+                  ),
+                ),
+                SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: _saveReport,
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: Color.fromARGB(255, 126, 194, 226),
+                  ),
+                ),
               ],
             ),
-            SizedBox(height: 8),
-            TextField(
-              controller: _descriptionController,
-              maxLines: 5,
-              decoration: InputDecoration(
-                hintText: 'Write a brief description of the problem',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: _saveReport,
-              child: Text(
-                'Submit',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                backgroundColor: Color.fromARGB(255, 126, 194, 226),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -239,3 +305,79 @@ class _ReportIssuePageState extends State<ReportPage> {
     );
   }
 }
+
+
+// FeedbackPopup remains unchanged.
+
+class FeedbackPopup extends StatelessWidget {
+  final String message;
+  final bool isSuccess;
+  final VoidCallback onClose;
+
+  const FeedbackPopup({
+    required this.message,
+    required this.isSuccess,
+    required this.onClose,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      backgroundColor: Colors.grey[200],
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              isSuccess ? Icons.check_circle : Icons.error,
+              color: isSuccess ? Color.fromARGB(255, 92, 138, 110) : Colors.red,
+              size: 50,
+            ),
+            SizedBox(height: 16),
+            Text(
+              isSuccess ? 'Smooth Operation' : 'Not Smooth Operation',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14, color: Colors.black54),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the popup
+                if (isSuccess) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                    (route) => false, // Clear the navigation stack
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.grey[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text(
+                isSuccess ? 'Continue' : 'Try again',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+

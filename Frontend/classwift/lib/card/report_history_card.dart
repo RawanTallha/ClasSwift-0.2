@@ -30,63 +30,63 @@ class ReportHistoryCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 15),
       child: Card(
-          elevation: 2,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          color: Colors.grey[200], // Light background color like in the image
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Center(
-                  child: Text(
-                    'Report ID: ${reportID}',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ),
-                Divider(
-                    color: Colors.black45), // Horizontal line under Report ID
-                SizedBox(height: 8),
-                Text('Date: ${reportDate}'),
-                Text('Building: ${reportBuilding}'),
-                Text('Floor: ${reportFloor}'),
-                Text('Room: ${reportRoomNo}'),
-                Text('Issue type: ${reportIssue}'),
-                Text('Problem description: ${reportDescribtion}'),
+        elevation: 2,
 
-                // button to either show more/ update status
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const history_page(
-                              ''); // MAKE A POP UP PAGE PLEASE
-                        }));
-                      },
-                      child: Text(
-                        'Show details',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 163, 163, 163),
-                      ),
-                    ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        color: Color.fromARGB(
+            255, 255, 233, 167), // Light background color like in the image
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Center(
+                child: Text(
+                  'Report ID: ${reportID}',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
                   ),
                 ),
-              ],
-            ),
-          )),
+              ),
+              SizedBox(
+                height: 10,
+              ), // Horizontal line under Report ID
+              Text('Date: ${reportDate}'),
+              Text('Building: ${reportBuilding}'),
+              Text('Floor: ${reportFloor}'),
+              Text('Room: ${reportRoomNo}'),
+              Text('Issue type: ${reportIssue}'),
+              Text('Problem description: ${reportDescribtion}'),
+
+              // button to either show more/ update status
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 8),
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       Navigator.push(context,
+              //           MaterialPageRoute(builder: (context) {
+              //         return const history_page(
+              //             ''); // MAKE A POP UP PAGE PLEASE
+              //       }));
+              //     },
+              //     child: Text(
+              //       'Show details',
+              //       style: TextStyle(
+              //         color: Colors.white,
+              //       ),
+              //     ),
+              //     style: ElevatedButton.styleFrom(
+              //       backgroundColor: Color.fromARGB(255, 241, 170, 82),
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
