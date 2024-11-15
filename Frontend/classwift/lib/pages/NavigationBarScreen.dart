@@ -12,33 +12,26 @@ class NavigationBarScreen extends StatefulWidget {
 
 class _NavigationBarScreenState extends State<NavigationBarScreen> {
   @override
-
-  List screens = [
-    const HomePage(),
-    const emergencyPage(),
-    const ProfilePage()
-  ];
+  List screens = [const HomePage(), const emergencyPage(), const ProfilePage()];
   int currentIndex = 0;
 
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Color.fromARGB(255, 10, 129, 255),
-        unselectedItemColor: Colors.blueGrey,
-        currentIndex: currentIndex, //changes the icon color when clicked 
-        onTap: (value){
-        currentIndex = value;
-        setState(() {});
-      },
-      //backgroundColor: Color.fromARGB(194, 186, 152, 232),
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.emergency), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: '')
-        ]
-      ),
+          selectedItemColor: Color.fromARGB(255, 83, 143, 208),
+          unselectedItemColor: Color.fromARGB(255, 181, 205, 218),
+          currentIndex: currentIndex, //changes the icon color when clicked
+          onTap: (value) {
+            currentIndex = value;
+            setState(() {});
+          },
+          //backgroundColor: Color.fromARGB(194, 186, 152, 232),
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+            //BottomNavigationBarItem(icon: Icon(Icons.emergency), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: '')
+          ]),
     );
-
   }
 }

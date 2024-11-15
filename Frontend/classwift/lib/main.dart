@@ -1,3 +1,4 @@
+import 'package:classwift/Demo.dart';
 import 'package:classwift/pages/NavigationBarScreen.dart';
 import 'package:classwift/pages/history_page.dart';
 import 'package:classwift/pages/home_page.dart';
@@ -17,11 +18,11 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: HomePage(),
-      home: ServicesPage(title: 'angry hams',),
+      //home: ServicesPage(title: 'angry hams',),
       //home: history_page(),
-      //home: NavigationBarScreen(), // we start from here
+      home: NavigationBarScreen(), // we start from here
       //home: LoginPage(),
+      //home: DemoPage(),
     );
-
   }
 }

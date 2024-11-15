@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 
-class ReportPage extends StatefulWidget {
+class DemoPage extends StatefulWidget {
   @override
   _ReportIssuePageState createState() => _ReportIssuePageState();
 }
 
-class _ReportIssuePageState extends State<ReportPage> {
+class _ReportIssuePageState extends State<DemoPage> {
   String? selectedBuilding;
   String? selectedFloor;
   String? selectedClassNo;
@@ -95,7 +95,7 @@ class _ReportIssuePageState extends State<ReportPage> {
         title: Text('Reporting an Issue'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: const EdgeInsets.all(40.0),
         child: Column(
           children: [
             Center(
