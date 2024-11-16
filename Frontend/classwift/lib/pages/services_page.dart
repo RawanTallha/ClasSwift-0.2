@@ -33,11 +33,10 @@ class _ServicesPageState extends State<ServicesPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/assets/wallpaper.png'), // Set your background image here
-            fit: BoxFit.cover, // This will cover the whole screen
+            image: AssetImage('lib/assets/wallpaper.png'),
+            fit: BoxFit.cover, // Cover the entire screen
           ),
         ),
-        padding: const EdgeInsets.all(16.0),
         child: FutureBuilder<Building>(
           future: futureBuilding,
           builder: (context, snapshot) {
@@ -47,51 +46,57 @@ class _ServicesPageState extends State<ServicesPage> {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else {
               Building building = snapshot.data!;
-              
-              // Filter only available classrooms
               final availableClassrooms = building.classrooms.where((classroom) => classroom.isAvailable).toList();
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Centered Title: Hardcoded "Building 11"
-                  Center(
-                    child: Text(
-                      'Building 11', // Hardcoded text
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black, // Adjust for visibility
+              return Padding(
+                padding: const EdgeInsets.all(16.0), // Padding around the entire content
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Text(
+                        'Building 11',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          shadows: [
+                            Shadow(
+                              offset: Offset(2.0, 2.0), // Shadow offset for a better look
+                              blurRadius: 5.0,
+                              color: Colors.grey.withOpacity(0.5),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  // Available Classrooms Title
-                  Text(
-                    'Available Classrooms',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[800], // Grey color for the title
+                    const SizedBox(height: 20),
+                    Text(
+                      'Available Classrooms',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[800],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  // Class List
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: availableClassrooms.length,
-                      itemBuilder: (context, index) {
-                        Classroom classroom = availableClassrooms[index];
-                        return buildClassBar(
-                          classroom.classroomNo.toString(),
-                          classroom.floor.toString(),
-                          classroom.capacity.toString(),
-                          classroom.isALab, // Pass lab status for coloring
-                        );
-                      },
+                    const SizedBox(height: 20),
+                    Expanded( // This makes the GridView take the remaining space
+                      child: GridView.builder(
+                        physics: BouncingScrollPhysics(), // Give it a nice bounce effect
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2, // Adjust the number of columns based on available space
+                          crossAxisSpacing: 12.0,
+                          mainAxisSpacing: 12.0,
+                        ),
+                        itemCount: availableClassrooms.length,
+                        itemBuilder: (context, index) {
+                          Classroom classroom = availableClassrooms[index];
+                          return buildClassBox(classroom);
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             }
           },
@@ -100,43 +105,81 @@ class _ServicesPageState extends State<ServicesPage> {
     );
   }
 
-  Widget buildClassBar(String classNumber, String floor, String capacity, bool isALab) {
-    Color color = isALab ? Color.fromARGB(255, 126, 181, 248) // Light red for labs
-                          : Color(0xFFD0F0C0); // Light green for regular classrooms
+  Widget buildClassBox(Classroom classroom) {
+    Color color = classroom.isALab ? Color.fromARGB(255, 126, 181, 248) 
+                                    : Color(0xFFD0F0C0);
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      constraints: BoxConstraints(minHeight: 120), // Ensure each class box has a minimum height
+      child: Stack(
         children: [
-          // Class Number Bar
-          Container(
-            color: color,
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Classroom No: $classNumber',
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+          Card(
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            color: color.withOpacity(0.8),
+            child: ExpansionTile(
+              title: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 8,
+                      width: 30,
+                      decoration: BoxDecoration(
+                        color: classroom.isALab ? Colors.blue : Colors.green,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Classroom No: ${classroom.classroomNo}',
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.5), // Set a transparent background
+                    borderRadius: BorderRadius.vertical(bottom: Radius.circular(12.0)), // Match the card's radius
+                  ),
+                  child: ListTile(
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        buildDetailRow('Floor:', classroom.floor.toString()),
+                        buildDetailRow('Capacity:', classroom.capacity.toString()),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          // Details Container
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.withOpacity(0.5)),
-              borderRadius: BorderRadius.circular(8.0),
-              color: Colors.white,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                buildDetailRow('Floor:', floor),
-                buildDetailRow('Capacity:', capacity),
-                buildDetailRow('Type:', isALab ? 'Lab' : 'Classroom'), // Display classroom type
-              ],
+          Positioned(
+            top: 10, // Position the label
+            left: 10,
+            child: Container(
+              decoration: BoxDecoration(
+                color: classroom.isALab ? Colors.blue.withOpacity(0.5) : Colors.green.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+              child: Text(
+                classroom.isALab ? 'Lab' : 'Class',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ],
