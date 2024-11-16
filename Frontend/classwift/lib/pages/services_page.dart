@@ -1,83 +1,109 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import '../models/building.dart';
 
-class ServicesPage extends StatelessWidget {
-  const ServicesPage({Key? key, required this.title}) : super(key: key);
+class ServicesPage extends StatefulWidget {
   final String title;
+
+  ServicesPage({Key? key, required this.title}) : super(key: key);
+
+  @override
+  _ServicesPageState createState() => _ServicesPageState();
+}
+
+class _ServicesPageState extends State<ServicesPage> {
+  late Future<Building> futureBuilding;
+
+  Future<Building> loadBuildingData() async {
+    final String response = await rootBundle.loadString('lib/assets/building11.json');
+    final data = await json.decode(response);
+    return Building.fromJson(data);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    futureBuilding = loadBuildingData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: AnimatedOpacity(
-          opacity: 0.8, // Adjust opacity for desired fade level
-          duration: const Duration(milliseconds: 300), // Adjust duration for fade speed
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.black, // Keep the text color black
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('lib/assets/wallpaper.png'), // Set your background image here
+            fit: BoxFit.cover, // This will cover the whole screen
           ),
         ),
-        backgroundColor: Colors.transparent, // Make the AppBar transparent
-        elevation: 0, // Remove the shadow
-        iconTheme: const IconThemeData(color: Colors.black), // Set the back button color to black
-      ),
-      body: Container(
-        color: Colors.white,
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Header
-            Text(
-              'Building 11',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF81B2DD), // Set the text color to 81B2DD
-              ),
-            ),
-            const SizedBox(height: 20),
-            // Class List
-            Expanded(
-              child: ListView(
+        child: FutureBuilder<Building>(
+          future: futureBuilding,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else {
+              Building building = snapshot.data!;
+              
+              // Filter only available classrooms
+              final availableClassrooms = building.classrooms.where((classroom) => classroom.isAvailable).toList();
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Example Class Entries
-                  buildClassBar(
-                      'Class 1',
-                      '10:00 AM - 11:30 AM',
-                      'Ground',
-                      'Under Construction',
-                      Color(0xFFD0F0C0)), // Light Apple Green
-                  buildClassBar(
-                      'Class 2',
-                      '12:00 PM - 1:30 PM',
-                      '1st',
-                      'Available',
-                      Color(0xFFBDC3C7)), // Light Gray
-                  buildClassBar(
-                      'Class 3',
-                      '2:00 PM - 3:30 PM',
-                      'Ground',
-                      'Available',
-                      Color(0xFFD0F0C0)), // Light Apple Green
-                  buildClassBar(
-                      'Class 4',
-                      '4:00 PM - 5:30 PM',
-                      '1st',
-                      'Under Construction',
-                      Color(0xFFBDC3C7)), // Light Gray
+                  // Centered Title: Hardcoded "Building 11"
+                  Center(
+                    child: Text(
+                      'Building 11', // Hardcoded text
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black, // Adjust for visibility
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  // Available Classrooms Title
+                  Text(
+                    'Available Classrooms',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[800], // Grey color for the title
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  // Class List
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: availableClassrooms.length,
+                      itemBuilder: (context, index) {
+                        Classroom classroom = availableClassrooms[index];
+                        return buildClassBar(
+                          classroom.classroomNo.toString(),
+                          classroom.floor.toString(),
+                          classroom.capacity.toString(),
+                          classroom.isALab, // Pass lab status for coloring
+                        );
+                      },
+                    ),
+                  ),
                 ],
-              ),
-            ),
-          ],
+              );
+            }
+          },
         ),
       ),
     );
   }
 
-  Widget buildClassBar(String classNumber, String duration, String floor, String status, Color color) {
+  Widget buildClassBar(String classNumber, String floor, String capacity, bool isALab) {
+    Color color = isALab ? Color.fromARGB(255, 126, 181, 248) // Light red for labs
+                          : Color(0xFFD0F0C0); // Light green for regular classrooms
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
@@ -88,7 +114,7 @@ class ServicesPage extends StatelessWidget {
             color: color,
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              classNumber,
+              'Classroom No: $classNumber',
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -107,9 +133,9 @@ class ServicesPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                buildDetailRow('Duration:', duration),
                 buildDetailRow('Floor:', floor),
-                buildDetailRow('Status:', status),
+                buildDetailRow('Capacity:', capacity),
+                buildDetailRow('Type:', isALab ? 'Lab' : 'Classroom'), // Display classroom type
               ],
             ),
           ),
