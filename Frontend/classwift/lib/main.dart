@@ -3,6 +3,8 @@ import 'package:classwift/pages/NavigationBarScreen.dart';
 import 'package:classwift/pages/history_page.dart';
 import 'package:classwift/pages/home_page.dart';
 import 'package:classwift/pages/login_page.dart';
+import 'package:classwift/pages/profile_page.dart';
+import 'package:classwift/pages/report_page.dart';
 import 'package:classwift/pages/services_page.dart';
 import 'package:flutter/material.dart';
 
@@ -18,11 +20,13 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: HomePage(),
-      home: ServicesPage(title: 'Available Classes',),
+      //home: ServicesPage(title: 'Available Classes',),
       //home: history_page(),
       //home: NavigationBarScreen(), // we start from here
       //home: LoginPage(),
       //home: DemoPage(),
+      home: ProfilePage()
+      //home: ReportPage()
     );
   }
 }

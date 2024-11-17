@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:classwift/pages/home_page.dart';
 import 'package:flutter/material.dart';
+// Removed unused import 'package:intl/intl_browser.dart';
 
 class ReportPage extends StatefulWidget {
   @override
@@ -26,14 +27,18 @@ class _ReportIssuePageState extends State<ReportPage> {
   }
 
   Future<void> _loadData() async {
-    final filePath = 'lib/assets/building11.json';
-    final file = File(filePath);
-    final jsonData = json.decode(await file.readAsString());
-    final buildingClassrooms = jsonData['classrooms'] as List<dynamic>;
+    try {
+      final filePath = 'assets/building11.json'; // Correct path
+      final file = File(filePath);
+      final jsonData = json.decode(await file.readAsString());
+      final buildingClassrooms = jsonData['classrooms'] as List<dynamic>;
 
-    classrooms
-        .addAll(buildingClassrooms.map((item) => item as Map<String, dynamic>));
-    floors.addAll(classrooms.map((room) => room['floor'].toString()).toSet());
+      classrooms
+          .addAll(buildingClassrooms.map((item) => item as Map<String, dynamic>));
+      floors.addAll(classrooms.map((room) => room['floor'].toString()).toSet());
+    } catch (e) {
+      print("Error loading data: $e");
+    }
   }
 
   String _generateReportId() {
@@ -50,10 +55,12 @@ class _ReportIssuePageState extends State<ReportPage> {
 
   void _updateClassNumbers(String floor) {
     // Filter classrooms based on selected floor
-    classNumbers = classrooms
-        .where((room) => room['floor'].toString() == floor)
-        .map((room) => 'Class ${room['classroomNo']}')
-        .toList();
+    setState(() {
+      classNumbers = classrooms
+          .where((room) => room['floor'].toString() == floor)
+          .map((room) => 'Class ${room['classroomNo']}')
+          .toList();
+    });
   }
 
   Future<void> _saveReport() async {
@@ -66,11 +73,11 @@ class _ReportIssuePageState extends State<ReportPage> {
       "date": DateTime.now().toIso8601String().split('T').first,
       "issueType": selectedIssueType,
       "problemDesc": _descriptionController.text,
-      "status": "Under maintanacecece",
+      "status": "Under maintenance", // Correct status
       "user_id": 1004
     };
 
-    final filePath = 'lib/assets/reports.json';
+    final filePath = 'assets/reports.json'; // Correct path
     final file = File(filePath);
     List<dynamic> reports;
 
@@ -94,15 +101,19 @@ class _ReportIssuePageState extends State<ReportPage> {
       isSubmissionSuccessful = false;
     }
 
+    _showFeedbackDialog(isSubmissionSuccessful);
+  }
+
+  void _showFeedbackDialog(bool isSuccess) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return FeedbackPopup(
-          message: isSubmissionSuccessful
+          message: isSuccess
               ? 'Your report has been submitted successfully!'
               : 'There was an error submitting your report. Please try again.',
-          isSuccess: isSubmissionSuccessful,
+          isSuccess: isSuccess,
           onClose: () {
             Navigator.of(context).pop();
           },
@@ -137,7 +148,6 @@ class _ReportIssuePageState extends State<ReportPage> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 26,
-                      //color: Colors.white, // Add color for better visibility
                     ),
                   ),
                 ),
@@ -169,7 +179,7 @@ class _ReportIssuePageState extends State<ReportPage> {
                     setState(() {
                       selectedFloor = value;
                       _updateClassNumbers(value!);
-                      selectedClassNo = null;
+                      selectedClassNo = null; // Reset class number
                     });
                   },
                   items: floors,
@@ -213,9 +223,7 @@ class _ReportIssuePageState extends State<ReportPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Icon(
-                      Icons.attachment,
-                    ),
+                    Icon(Icons.attachment),
                   ],
                 ),
                 SizedBox(height: 8),
@@ -224,11 +232,10 @@ class _ReportIssuePageState extends State<ReportPage> {
                   maxLines: 5,
                   decoration: InputDecoration(
                     hintText: 'Write a brief description of the problem',
-                    hintStyle: TextStyle(color: Colors.grey), // Hint text color
+                    hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(),
                     filled: true,
-                    fillColor: Colors.white
-                        .withOpacity(0.8), // Background color with transparency
+                    fillColor: Colors.white.withOpacity(0.8),
                   ),
                 ),
                 SizedBox(height: 24),
@@ -291,7 +298,6 @@ class _ReportIssuePageState extends State<ReportPage> {
 }
 
 // FeedbackPopup remains unchanged.
-
 class FeedbackPopup extends StatelessWidget {
   final String message;
   final bool isSuccess;

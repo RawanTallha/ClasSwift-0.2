@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.19.0
+  font_awesome_flutter: ^10.1.0
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +22,6 @@ flutter:
   assets:
   - lib/assets/
   - lib/assets/building11.json
+  - lib/assets/reports.json
+  - lib/assets/pfp1.jpg
+
