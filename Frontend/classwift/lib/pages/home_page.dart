@@ -6,7 +6,7 @@ import 'package:classwift/card/services_card.dart';
 import 'package:classwift/pages/history_page.dart';
 import 'package:classwift/pages/login_page.dart';
 import 'package:classwift/pages/report_page.dart';
-import 'package:classwift/pages/services_page.dart';
+import 'package:classwift/pages/Availability_Page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

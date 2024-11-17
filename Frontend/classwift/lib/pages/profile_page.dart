@@ -31,7 +31,8 @@ class ProfilePage extends StatelessWidget {
             height: screenSize.height,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('lib/assets/wallpaper.png'), // Set your wallpaper image here
+                image: AssetImage(
+                    'lib/assets/wallpaper.png'), // Set your wallpaper image here
                 fit: BoxFit.cover,
               ),
             ),
@@ -47,15 +48,19 @@ class ProfilePage extends StatelessWidget {
           ),
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, // Center the Column
-                crossAxisAlignment: CrossAxisAlignment.center, // Center contents horizontally
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // Center the Column
+                crossAxisAlignment:
+                    CrossAxisAlignment.center, // Center contents horizontally
                 children: [
                   // Profile Picture Section
                   _buildProfilePicture(),
 
-                  const SizedBox(height: 20.0), // Space between picture and name
+                  const SizedBox(
+                      height: 20.0), // Space between picture and name
                   const Text(
                     'User Name',
                     textAlign: TextAlign.center, // Center the text
@@ -66,7 +71,8 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 16.0), // Space between name and additional info
+                  const SizedBox(
+                      height: 16.0), // Space between name and additional info
                   const Text(
                     'user.email@example.com',
                     textAlign: TextAlign.center, // Center the text
@@ -114,8 +120,10 @@ class ProfilePage extends StatelessWidget {
               backgroundColor: Color(0xFF81B2DD),
               child: CircleAvatar(
                 radius: 60.0,
-                backgroundImage: AssetImage('lib/assets/pfp1.jpg'), // Use the correct asset path
-                backgroundColor: Colors.grey, // Fallback color if image fails to load
+                backgroundImage: AssetImage(
+                    'lib/assets/logo.png'), // Use the correct asset path
+                backgroundColor:
+                    Colors.grey, // Fallback color if image fails to load
               ),
             ),
           ),
@@ -182,11 +190,9 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16.0),
-            _buildListTile(context, Icons.person, 'Edit Profile', EditProfilePage()),
+            _buildListTile(context, Icons.person, 'View Profile', EditProfilePage()),
             _buildListTile(context, Icons.lock, 'Change Password', ChangePasswordPage()),
             _buildListTile(context, Icons.notifications, 'Notifications', NotificationSettingsPage()),
-            _buildListTile(context, Icons.report, 'Past Report Status', PastReportStatusPage()),
-            _buildListTile(context, Icons.contact_mail, 'Contact Us', ContactUsPage()),
             _buildListTile(context, Icons.report_problem, 'Report Issue', ReportIssuePage()),
           ],
         ),
@@ -194,7 +200,8 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  ListTile _buildListTile(BuildContext context, IconData icon, String title, Widget page) {
+  ListTile _buildListTile(
+      BuildContext context, IconData icon, String title, Widget page) {
     return ListTile(
       leading: Icon(icon, color: const Color(0xFF224B65)),
       title: Text(
@@ -243,7 +250,8 @@ class ChangePasswordPage extends StatelessWidget {
         backgroundColor: const Color(0xFF81B2DD),
       ),
       body: const Center(
-        child: Text('Change Password Screen - Implement password change logic here'),
+        child: Text(
+            'Change Password Screen - Implement password change logic here'),
       ),
     );
   }
@@ -260,7 +268,8 @@ class NotificationSettingsPage extends StatelessWidget {
         backgroundColor: const Color(0xFF81B2DD),
       ),
       body: const Center(
-        child: Text('Notification Settings Screen - Implement notification settings here'),
+        child: Text(
+            'Notification Settings Screen - Implement notification settings here'),
       ),
     );
   }
@@ -277,7 +286,8 @@ class PastReportStatusPage extends StatelessWidget {
         backgroundColor: const Color(0xFF81B2DD),
       ),
       body: const Center(
-        child: Text('Past Report Status Screen - Implement past report logic here'),
+        child: Text(
+            'Past Report Status Screen - Implement past report logic here'),
       ),
     );
   }

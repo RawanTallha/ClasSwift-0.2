@@ -1,5 +1,5 @@
 // ignore: unused_import
-import 'package:classwift/pages/services_page.dart';
+import 'package:classwift/pages/Availability_Page.dart';
 import 'package:flutter/material.dart';
 
 class ServicesCard extends StatelessWidget {
