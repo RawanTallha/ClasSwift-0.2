@@ -1,3 +1,5 @@
+import 'package:classwift/pages/NavigationBarScreen.dart';
+import 'package:classwift/pages/Users_page.dart';
 import 'package:classwift/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +20,9 @@ class MainApp extends StatelessWidget {
       //home: NavigationBarScreen(), // we start from here
       //home: LoginPage(),
       //home: DemoPage(),
-      home: ProfilePage()
+      //home: ProfilePage()
       //home: ReportPage()
+      home:WelcomePage()
     );
   }
 }
