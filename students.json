@@ -1,64 +1,44 @@
 {
     "students": [
         {
-            "name": "Alice Adams",
-            "student_id": 2001,
-            "major": "Computer Science",
-            "grade": "A"
+            "name": "Rawan Tallha",
+            "student_id": 2211116,
+            "major": "Software Engineering",
+            "collage": "computer science",
+            "Email": "2211116@uj.edu.sa",
+            "phoneNo": 966566838361,
+            "Password": "Aa14496"
+         
         },
         {
-            "name": "Benjamin Brown",
-            "student_id": 2002,
-            "major": "Engineering",
-            "grade": "B+"
+            "name": "Rital Shilli",
+            "student_id": 2213116,
+            "major": "Software Engineering",
+            "collage": "computer science",
+            "Email": "2213116@uj.edu.sa",
+            "phoneNo": 966543111370,
+            "Password": "Aa13423"
+         
         },
         {
-            "name": "Catherine Clark",
-            "student_id": 2003,
-            "major": "Mathematics",
-            "grade": "A-"
+            "name": "lana alhaddad",
+            "student_id": 2213182,
+            "major": "Software Engineering",
+            "collage": "computer science",
+            "Email": "2213182@uj.edu.sa",
+            "phoneNo": 966543174609,
+            "Password": "Aa13161"
+         
         },
         {
-            "name": "David Davis",
-            "student_id": 2004,
-            "major": "Biology",
-            "grade": "B"
-        },
-        {
-            "name": "Emma Evans",
-            "student_id": 2005,
-            "major": "History",
-            "grade": "A"
-        },
-        {
-            "name": "Frank Foster",
-            "student_id": 2006,
-            "major": "Psychology",
-            "grade": "B-"
-        },
-        {
-            "name": "Grace Green",
-            "student_id": 2007,
-            "major": "Sociology",
-            "grade": "C+"
-        },
-        {
-            "name": "Henry Harris",
-            "student_id": 2008,
-            "major": "English",
-            "grade": "B"
-        },
-        {
-            "name": "Isabel Inman",
-            "student_id": 2009,
-            "major": "Art",
-            "grade": "A+"
-        },
-        {
-            "name": "James Johnson",
-            "student_id": 2010,
-            "major": "Economics",
-            "grade": "B-"
+            "name": "hams assiri",
+            "student_id": 2213778,
+            "major": "Software Engineering",
+            "collage": "computer science",
+            "Email": "2213116@uj.edu.sa",
+            "phoneNo": 966544987678,
+            "Password": "Aa13333"
+         
         }
     ]
 }

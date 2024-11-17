@@ -1,74 +1,36 @@
 {
     "faculty_members": [
         {
-            "name": "Lana Alhaddad",
-            "phone": "555-1234",
-            "email": "Lana.Alhaddad@example.com",
-            "department": "Computer Science",
-            "id": 1001
+            "name": "tony stark",
+            "phone": "966543111380",
+            "email": "tony.stark@example.com",
+            "department": "Electrical Engineering",
+            "id": 1001,
+            "Password": "Aa17659"
         },
         {
-            "name": "Rawan Tallha",
-            "phone": "555-5678",
-            "email": "Rawan.Tallha@example.com",
-            "department": "Mathematics",
-            "id": 1002
+            "name": "bruce banner",
+            "phone": "966543548762",
+            "email": "bruce.banner@example.com",
+            "department": "Computer science",
+            "id": 1002,
+            "Password": "Aa19346"
         },
         {
-            "name": "Hams Assiri",
-            "phone": "555-9101",
-            "email": "Hams.Assirin@example.com",
+            "name": "steve rogers",
+            "phone": "9661639726790",
+            "email": "steve rogers@example.com",
             "department": "Physics",
-            "id": 1003
+            "id": 1003,
+            "Password": "Aa13475"
         },
         {
-            "name": "Retal Shilli",
-            "phone": "555-1213",
-            "email": "Retal.Shilli@example.com",
+            "name": "wanda maximoff",
+            "phone": "966253476890",
+            "email": "wanda.maximoff@example.com",
             "department": "Biology",
-            "id": 1004
-        },
-        {
-            "name": "Rabia Hilal",
-            "phone": "555-1415",
-            "email": "Rabia.Hilal@example.com",
-            "department": "Chemistry",
-            "id": 1005
-        },
-        {
-            "name": "Mann Alsalamah",
-            "phone": "555-1617",
-            "email": "Mann.Alsalamah@example.com",
-            "department": "History",
-            "id": 1006
-        },
-        {
-            "name": "Jana Shalabi",
-            "phone": "555-1819",
-            "email": "Jana.Shalabi@example.com",
-            "department": "English",
-            "id": 1007
-        },
-        {
-            "name": "Peter Parker",
-            "phone": "555-2021",
-            "email": "Peter.Parker@example.com",
-            "department": "Art",
-            "id": 1008
-        },
-        {
-            "name": "Tony Stark",
-            "phone": "555-2223",
-            "email": "Tony.Stark@example.com",
-            "department": "Sociology",
-            "id": 1009
-        },
-        {
-            "name": "Taylor Swift",
-            "phone": "555-2425",
-            "email": "Taylor.Swift@example.com",
-            "department": "Economics",
-            "id": 1010
+            "id": 1004,
+            "Password": "Aa10980"
         }
     ]
 }

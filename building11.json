@@ -1,7 +1,7 @@
 {
     "buildingNo": 11,
     "location": "Fasaliyah",
-    "numOfFloors": 3,
+    "numOfFloors": 5,
     "numOfClassrooms": 10,
     "capacity": 150,
     "accessible": true,

@@ -21,3 +21,24 @@ building11.find_alternative(tata)
 print("\n")
 building11.find_alternative(lala) 
 '''
+
+"""
+#----------------------testing sprint 2 ----------------------------------------------------
+print("------------testing for reports and reporting (maintenance)-----------------")
+lana = FacultyMember("Lana","0506616414","lnln@gmail.com","Software Engineering",2222)
+temp = Report(1234, 21, '27-10-2024', 'technology', 'the projector does not work',lana)
+print(temp)
+print("\n")
+#test for update status of report
+temp2 = Report(1111, 101, "2024-10-26", "Electrical", "Broken light", lana)
+print(temp2.status)  # should be: In Progress
+
+temp2.updateStatus(1111, "Issue Solved")
+print(temp2.status)  # should be: Issue Solved
+
+temp2.updateStatus(1111, "invalid status")  
+print(temp2.status)  # should be: Issue Solved (unchanged)
+print("\n")
+print("------------testing for view availability (student view)------------------")
+
+"""

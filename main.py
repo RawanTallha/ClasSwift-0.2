@@ -1,20 +1,37 @@
+
 import json
 import random
 import string
-class User:
-  def __init__(self, name, phoneNumber, email, department):
-    self.name = name
-    self.phoneNumber = phoneNumber
-    self.email = email
-    self.department = department
 
-  def __str__(self):
-    return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\ndepartment: {self.department}" 
+class User:
+    def __init__(self, name, phoneNumber, email, department):
+        self.name = name
+        self.phoneNumber = phoneNumber
+        self.email = email
+        self.department = department
+
+    def get_name(self):
+        return self.name
+
+    def get_phoneNumber(self):
+        return self.phoneNumber
+
+    def get_email(self):
+        return self.email
+
+    def get_department(self):
+        return self.department
+
+    def __str__(self):
+        return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\ndepartment: {self.department}" 
 
 class FacultyMember(User):
     def __init__(self,name, phoneNumber, email, department, facultyID):
         super().__init__(name, phoneNumber, email, department)
         self.facultyID = facultyID
+      
+    def get_facultyID(self):
+        return self.facultyID
               
     def __str__(self):
         return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\nfaculty ID: {self.facultyID}\ndepartment: {self.department}\n\n"      
@@ -25,19 +42,26 @@ class Maintenance(User):
         super().__init__(name, phoneNumber, email, department)
         self.maintenanceId = maintenanceId
     
+    def get_maintenanceId(self):
+        return self.maintenanceId
 
     def __str__(self):
         return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\ndepartment: {self.department}\nmaintenanceId: {self.maintenanceId}\n\n"
 
 class Student(User):
-    def __init__(self, name, student_id, major, grade):
-        self.name = name
-        self.student_id = student_id
+    def __init__(self, name, phoneNumber, email, department, studentID, major):
+        super().__init__(name, phoneNumber, email, department)
+        self.studentID = studentID
         self.major = major
-        self.grade = grade
+       
+    def get_studentID(self):
+        return self.studentID
 
+    def get_major(self):
+        return self.major
+       
     def __str__(self):
-        return f"Name: {self.name}\nStudent ID: {self.student_id}\nMajor: {self.major}\nGrade: {self.grade}\n"
+        return f"name: {self.name}\nphone number: {self.phoneNumber}\nemail: {self.email}\ndepartment: {self.department}\nstudent ID: {self.studentID}\nmajor: {self.major}"
     
     
 class Building:
@@ -129,6 +153,23 @@ class Report:
         else:
             print("Invalid status provided. Status remains unchanged.")
 
+    def set_classroomNo(self, classroomNo):
+        self.classroomNo = classroomNo
+
+    def set_date(self, date):
+        self.date = date
+
+    def set_issueType(self, issueType):
+        self.issueType = issueType
+
+    def set_problemDesc(self, problemDesc):
+        self.problemDesc = problemDesc
+
+    def set_status(self, status):
+        self.status = status
+
+    def set_user_id(self, user_id):
+        self.user_id = user_id
 
     def to_dict(self):
         return {
@@ -255,25 +296,4 @@ report_data = {'reports': [report.to_dict() for report in reports]}
 
 # Write the reports to a JSON file
 with open("reports.json", "w") as file:
-    json.dump(report_data, file, indent=4)
-
-"""
-#----------------------testing sprint 2 ----------------------------------------------------
-print("------------testing for reports and reporting (maintenance)-----------------")
-lana = FacultyMember("Lana","0506616414","lnln@gmail.com","Software Engineering",2222)
-temp = Report(1234, 21, '27-10-2024', 'technology', 'the projector does not work',lana)
-print(temp)
-print("\n")
-#test for update status of report
-temp2 = Report(1111, 101, "2024-10-26", "Electrical", "Broken light", lana)
-print(temp2.status)  # should be: In Progress
-
-temp2.updateStatus(1111, "Issue Solved")
-print(temp2.status)  # should be: Issue Solved
-
-temp2.updateStatus(1111, "invalid status")  
-print(temp2.status)  # should be: Issue Solved (unchanged)
-print("\n")
-print("------------testing for view availability (student view)------------------")
-
-"""
+    json.dump(report_data, file, indent=4)  
