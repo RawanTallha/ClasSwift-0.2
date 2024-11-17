@@ -96,6 +96,39 @@
             "problemDesc": "hopfully last test",
             "status": "Under maintanacecece",
             "user_id": 1004
+        },
+        {
+            "reportId": "WR63",
+            "building": null,
+            "floor": null,
+            "classroomNo": null,
+            "date": "2024-11-17",
+            "issueType": null,
+            "problemDesc": "",
+            "status": "Under maintanacecece",
+            "user_id": 1004
+        },
+        {
+            "reportId": "FN76",
+            "building": "Building 11",
+            "floor": null,
+            "classroomNo": null,
+            "date": "2024-11-17",
+            "issueType": "Furniture",
+            "problemDesc": "test where its not filled",
+            "status": "Under maintanacecece",
+            "user_id": 1004
+        },
+        {
+            "reportId": "BX80",
+            "building": null,
+            "floor": null,
+            "classroomNo": null,
+            "date": "2024-11-17",
+            "issueType": null,
+            "problemDesc": "",
+            "status": "Under maintanacecece",
+            "user_id": 1004
         }
     ]
 }

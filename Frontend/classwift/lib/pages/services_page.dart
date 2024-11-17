@@ -16,7 +16,8 @@ class _ServicesPageState extends State<ServicesPage> {
   late Future<Building> futureBuilding;
 
   Future<Building> loadBuildingData() async {
-    final String response = await rootBundle.loadString('lib/assets/building11.json');
+    final String response =
+        await rootBundle.loadString('lib/assets/building11.json');
     final data = await json.decode(response);
     return Building.fromJson(data);
   }
@@ -30,10 +31,13 @@ class _ServicesPageState extends State<ServicesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/assets/wallpaper.png'),
+            image: AssetImage('lib/assets/wallpapers (3).png'),
             fit: BoxFit.cover, // Cover the entire screen
           ),
         ),
@@ -46,10 +50,13 @@ class _ServicesPageState extends State<ServicesPage> {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else {
               Building building = snapshot.data!;
-              final availableClassrooms = building.classrooms.where((classroom) => classroom.isAvailable).toList();
+              final availableClassrooms = building.classrooms
+                  .where((classroom) => classroom.isAvailable)
+                  .toList();
 
               return Padding(
-                padding: const EdgeInsets.all(16.0), // Padding around the entire content
+                padding: const EdgeInsets.all(
+                    16.0), // Padding around the entire content
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -62,7 +69,8 @@ class _ServicesPageState extends State<ServicesPage> {
                           color: Colors.black,
                           shadows: [
                             Shadow(
-                              offset: Offset(2.0, 2.0), // Shadow offset for a better look
+                              offset: Offset(
+                                  2.0, 2.0), // Shadow offset for a better look
                               blurRadius: 5.0,
                               color: Colors.grey.withOpacity(0.5),
                             ),
@@ -80,11 +88,14 @@ class _ServicesPageState extends State<ServicesPage> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Expanded( // This makes the GridView take the remaining space
+                    Expanded(
+                      // This makes the GridView take the remaining space
                       child: GridView.builder(
-                        physics: BouncingScrollPhysics(), // Give it a nice bounce effect
+                        physics:
+                            BouncingScrollPhysics(), // Give it a nice bounce effect
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, // Adjust the number of columns based on available space
+                          crossAxisCount:
+                              2, // Adjust the number of columns based on available space
                           crossAxisSpacing: 12.0,
                           mainAxisSpacing: 12.0,
                         ),
@@ -106,11 +117,13 @@ class _ServicesPageState extends State<ServicesPage> {
   }
 
   Widget buildClassBox(Classroom classroom) {
-    Color color = classroom.isALab ? Color.fromARGB(255, 126, 181, 248) 
-                                    : Color(0xFFD0F0C0);
+    Color color = classroom.isALab
+        ? Color.fromARGB(255, 126, 181, 248)
+        : Color(0xFFD0F0C0);
 
     return Container(
-      constraints: BoxConstraints(minHeight: 120), // Ensure each class box has a minimum height
+      constraints: BoxConstraints(
+          minHeight: 120), // Ensure each class box has a minimum height
       child: Stack(
         children: [
           Card(
@@ -148,15 +161,19 @@ class _ServicesPageState extends State<ServicesPage> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.5), // Set a transparent background
-                    borderRadius: BorderRadius.vertical(bottom: Radius.circular(12.0)), // Match the card's radius
+                    color: Colors.white
+                        .withOpacity(0.5), // Set a transparent background
+                    borderRadius: BorderRadius.vertical(
+                        bottom:
+                            Radius.circular(12.0)), // Match the card's radius
                   ),
                   child: ListTile(
                     title: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         buildDetailRow('Floor:', classroom.floor.toString()),
-                        buildDetailRow('Capacity:', classroom.capacity.toString()),
+                        buildDetailRow(
+                            'Capacity:', classroom.capacity.toString()),
                       ],
                     ),
                   ),
@@ -169,7 +186,9 @@ class _ServicesPageState extends State<ServicesPage> {
             left: 10,
             child: Container(
               decoration: BoxDecoration(
-                color: classroom.isALab ? Colors.blue.withOpacity(0.5) : Colors.green.withOpacity(0.5),
+                color: classroom.isALab
+                    ? Colors.blue.withOpacity(0.5)
+                    : Colors.green.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(4),
               ),
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),

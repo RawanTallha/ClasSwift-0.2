@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:classwift/pages/NavigationBarScreen.dart';
 import 'package:classwift/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -122,7 +123,7 @@ class _ReportIssuePageState extends State<ReportPage> {
           // Wallpaper background
           Positioned.fill(
             child: Image.asset(
-              'lib/assets/wallpapers (1).png',
+              'lib/assets/wallpapers (2).png',
               fit: BoxFit.cover, // Cover the entire background
             ),
           ),
@@ -341,7 +342,8 @@ class FeedbackPopup extends StatelessWidget {
                 Navigator.of(context).pop(); // Close the popup
                 if (isSuccess) {
                   Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => HomePage()),
+                    MaterialPageRoute(
+                        builder: (context) => NavigationBarScreen()),
                     (route) => false, // Clear the navigation stack
                   );
                 }

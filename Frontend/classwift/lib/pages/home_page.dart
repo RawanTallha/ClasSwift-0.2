@@ -4,6 +4,7 @@ import 'package:classwift/card/event_card.dart';
 import 'package:classwift/card/report_history_card.dart';
 import 'package:classwift/card/services_card.dart';
 import 'package:classwift/pages/history_page.dart';
+import 'package:classwift/pages/login_page.dart';
 import 'package:classwift/pages/report_page.dart';
 import 'package:classwift/pages/services_page.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,76 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        //backgroundColor: Colors.white60,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            SizedBox(height: 30),
+            Container(
+              alignment: Alignment.centerLeft, // Align to the left
+              padding:
+                  EdgeInsets.all(16.0), // Optional: Add padding for spacing
+              child: Column(
+                crossAxisAlignment:
+                    CrossAxisAlignment.center, // Align children to the left
+                children: [
+                  Icon(Icons.menu_rounded,
+                      color: Color.fromARGB(255, 121, 89, 178)),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'More',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 121, 89, 178),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            ListTile(
+              leading: Icon(Icons.settings,
+                  color: Color.fromARGB(255, 142, 187, 227)),
+              title: Text('Settings'),
+              onTap: () {
+                // Action for Settings
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.info_outline_rounded,
+                  color: Color.fromARGB(255, 142, 187, 227)),
+              title: Text('About us'),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return HomePage();
+                }));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.support_agent,
+                  color: Color.fromARGB(255, 121, 89, 178)),
+              title: Text('Contact Us'),
+              onTap: () {
+                // Action for Settings
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.exit_to_app,
+                  color: Color.fromARGB(255, 121, 89, 178)),
+              title: Text('Exit'),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return LoginPage();
+                }));
+              },
+            ),
+          ],
+        ),
+      ),
       body: Stack(
         children: [
           // Background Image
@@ -42,22 +113,16 @@ class _HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Hello,',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
-                            ),
-                            Text(
-                              'Peter B. Parker',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 24),
-                            )
-                          ],
+                        Builder(
+                          builder: (context) => IconButton(
+                            icon: Icon(Icons.menu,
+                                color: Color.fromARGB(255, 56, 120, 176)),
+                            onPressed: () {
+                              Scaffold.of(context)
+                                  .openDrawer(); // Opens the sidebar
+                            },
+                          ),
                         ),
-
                         // Logo
                         Image.asset(
                           'lib/assets/logo.png',
@@ -67,8 +132,29 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
 
-                  SizedBox(height: 25),
-
+                  SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 30),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hello,',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          Text(
+                            'Peter B. Parker',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 24),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                   // Card --> Catchphrase
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
