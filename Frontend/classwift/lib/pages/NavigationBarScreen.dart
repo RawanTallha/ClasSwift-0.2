@@ -12,7 +12,7 @@ class NavigationBarScreen extends StatefulWidget {
 
 class _NavigationBarScreenState extends State<NavigationBarScreen> {
   @override
-  List screens = [const HomePage(), const emergencyPage(),  ProfilePage()];
+  List screens = [const HomePage(), ProfilePage()];
   int currentIndex = 0;
 
   Widget build(BuildContext context) {

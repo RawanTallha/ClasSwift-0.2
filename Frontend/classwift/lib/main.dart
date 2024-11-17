@@ -24,7 +24,7 @@ class MainApp extends StatelessWidget {
       //home: NavigationBarScreen(), // we start from here
       home: LoginPage(),
       //home: DemoPage(),
-      home: ProfilePage()
+      //home: ProfilePage()
       //home: ReportPage()
     );
   }
