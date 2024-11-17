@@ -6,7 +6,7 @@ class EventCard extends StatelessWidget {
   final String eventDesc;
 
 // constructor to change icon and service in every card
-  EventCard({
+  const EventCard({super.key, 
     required this.eventImagePath,
     required this.eventOrganizer,
     required this.eventDesc,
@@ -17,7 +17,7 @@ class EventCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 15.0),
       child: Card(
-        color: Color.fromARGB(255, 214, 240, 231),
+        color: const Color.fromARGB(255, 214, 240, 231),
         child: Column(children: [
           // event image/ add
           Expanded(
@@ -30,14 +30,14 @@ class EventCard extends StatelessWidget {
                 )),
           ),
 
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
 
           // event organization (bold)
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
               eventOrganizer,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
 

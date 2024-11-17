@@ -21,6 +21,8 @@ class LoginPage extends StatelessWidget {
   final TextEditingController idController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +44,9 @@ class LoginPage extends StatelessWidget {
                   height: 100,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Title at the top left
-              Text(
+              const Text(
                 'ClasSwift',
                 style: TextStyle(
                   fontSize: 30,
@@ -52,52 +54,52 @@ class LoginPage extends StatelessWidget {
                   color: Color(0xFF224B65),
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               // ID field
               TextField(
                 controller: idController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'ID',
                   labelStyle: TextStyle(color: Color(0xFF81B2DD)),
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Password field
               TextField(
                 controller: passwordController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
                   labelStyle: TextStyle(color: Color(0xFF81B2DD)),
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Forgot Password text
-              Align(
+              const Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   'Forgot Password?',
                   style: TextStyle(color: Color(0xFF81B2DD)),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Login button
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return NavigationBarScreen(); // Ensure this matches the constructor of your HomePage
+                    return const NavigationBarScreen(); // Ensure this matches the constructor of your HomePage
                   }));
                 },
-                child: Text('Login', style: TextStyle(fontSize: 18, color: Colors.white,),),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF81B2DD),
+                  backgroundColor: const Color(0xFF81B2DD),
                 ),
+                child: Text('Login', style: TextStyle(fontSize: 18, color: Colors.white,),),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               // Other login options text
-              Text(
+              const Text(
                 'Other Login Options',
                 style: TextStyle(
                   fontSize: 16,
@@ -106,7 +108,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               // Centered Row for pressable boxes
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +121,7 @@ class LoginPage extends StatelessWidget {
                       width: 60,
                       height: 60,
                       decoration: BoxDecoration(
-                        image: DecorationImage(
+                        image: const DecorationImage(
                           image: NetworkImage('https://via.placeholder.com/60'),
                           fit: BoxFit.cover,
                         ),
@@ -128,7 +130,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   GestureDetector(
                     onTap: () {
                       // Handle second image tap
@@ -137,7 +139,7 @@ class LoginPage extends StatelessWidget {
                       width: 60,
                       height: 60,
                       decoration: BoxDecoration(
-                        image: DecorationImage(
+                        image: const DecorationImage(
                           image: NetworkImage('https://via.placeholder.com/60'),
                           fit: BoxFit.cover,
                         ),

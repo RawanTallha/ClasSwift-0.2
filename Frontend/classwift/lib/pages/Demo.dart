@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class ReportPage extends StatefulWidget {
+  const ReportPage({super.key});
+
   @override
   _ReportIssuePageState createState() => _ReportIssuePageState();
 }
@@ -27,7 +29,7 @@ class _ReportIssuePageState extends State<ReportPage> {
   }
 
   Future<void> _loadData() async {
-    final filePath = 'lib/assets/building11.json';
+    const filePath = 'lib/assets/building11.json';
     final file = File(filePath);
     final jsonData = json.decode(await file.readAsString());
     final buildingClassrooms = jsonData['classrooms'] as List<dynamic>;
@@ -60,12 +62,12 @@ class _ReportIssuePageState extends State<ReportPage> {
       showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: Text('Success'),
-          content: Text('Your report has been submitted successfully!'),
+          title: const Text('Success'),
+          content: const Text('Your report has been submitted successfully!'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
@@ -73,7 +75,7 @@ class _ReportIssuePageState extends State<ReportPage> {
     } else {
       // Show a snackbar or error dialog
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please fill in all required fields.')),
+        const SnackBar(content: Text('Please fill in all required fields.')),
       );
     }
   }
@@ -81,7 +83,7 @@ class _ReportIssuePageState extends State<ReportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Report an Issue')),
+      appBar: AppBar(title: const Text('Report an Issue')),
       body: Form(
         key: _formKey,
         child: Padding(
@@ -98,7 +100,7 @@ class _ReportIssuePageState extends State<ReportPage> {
                 validator: (value) =>
                     value == null ? 'Please select a building' : null,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               _buildDropdown(
                 label: 'Floor',
                 value: selectedFloor,
@@ -113,7 +115,7 @@ class _ReportIssuePageState extends State<ReportPage> {
                 validator: (value) =>
                     value == null ? 'Please select a floor' : null,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               _buildDropdown(
                 label: 'Class Number',
                 value: selectedClassNo,
@@ -124,7 +126,7 @@ class _ReportIssuePageState extends State<ReportPage> {
                 validator: (value) =>
                     value == null ? 'Please select a class number' : null,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               _buildDropdown(
                 label: 'Issue Type',
                 value: selectedIssueType,
@@ -135,21 +137,21 @@ class _ReportIssuePageState extends State<ReportPage> {
                 validator: (value) =>
                     value == null ? 'Please select an issue type' : null,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _descriptionController,
                 maxLines: 4,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Problem Description',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) =>
                     value!.isEmpty ? 'Please describe the problem' : null,
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: _submitForm,
-                child: Text('Submit'),
+                child: const Text('Submit'),
               ),
             ],
           ),
@@ -169,7 +171,7 @@ class _ReportIssuePageState extends State<ReportPage> {
       value: value,
       decoration: InputDecoration(
         labelText: label,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
       onChanged: onChanged,
       validator: validator,

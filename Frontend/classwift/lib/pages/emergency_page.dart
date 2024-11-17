@@ -5,7 +5,7 @@ class emergencyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Text('Stay tuned for CLASSWIFT 3.0'),
     );
   }

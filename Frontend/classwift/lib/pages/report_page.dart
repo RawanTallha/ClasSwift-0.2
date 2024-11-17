@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 // Removed unused import 'package:intl/intl_browser.dart';
 
 class ReportPage extends StatefulWidget {
+  const ReportPage({super.key});
+
   @override
   _ReportIssuePageState createState() => _ReportIssuePageState();
 }
@@ -29,7 +31,7 @@ class _ReportIssuePageState extends State<ReportPage> {
 
   Future<void> _loadData() async {
     try {
-      final filePath = 'assets/building11.json'; // Correct path
+      const filePath = 'assets/building11.json'; // Correct path
       final file = File(filePath);
       final jsonData = json.decode(await file.readAsString());
       final buildingClassrooms = jsonData['classrooms'] as List<dynamic>;
@@ -78,7 +80,7 @@ class _ReportIssuePageState extends State<ReportPage> {
       "user_id": 1004
     };
 
-    final filePath = 'assets/reports.json'; // Correct path
+    const filePath = 'assets/reports.json'; // Correct path
     final file = File(filePath);
     List<dynamic> reports;
 
@@ -127,7 +129,7 @@ class _ReportIssuePageState extends State<ReportPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Reporting an Issue'),
+        title: const Text('Reporting an Issue'),
       ),
       body: Stack(
         children: [
@@ -143,7 +145,7 @@ class _ReportIssuePageState extends State<ReportPage> {
             padding: const EdgeInsets.all(30.0),
             child: Column(
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'Report form',
                     style: TextStyle(
@@ -152,12 +154,12 @@ class _ReportIssuePageState extends State<ReportPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 16),
-                Divider(
+                const SizedBox(height: 16),
+                const Divider(
                   endIndent: 10,
                   indent: 10,
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
 
                 // Building Dropdown
                 _buildDropdown(
@@ -170,7 +172,7 @@ class _ReportIssuePageState extends State<ReportPage> {
                   },
                   items: ['Building 11'],
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
 
                 // Floor Dropdown
                 _buildDropdown(
@@ -185,7 +187,7 @@ class _ReportIssuePageState extends State<ReportPage> {
                   },
                   items: floors,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
 
                 // Class Number Dropdown
                 _buildDropdown(
@@ -198,7 +200,7 @@ class _ReportIssuePageState extends State<ReportPage> {
                   },
                   items: classNumbers,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
 
                 // Issue Type Dropdown
                 _buildDropdown(
@@ -211,10 +213,10 @@ class _ReportIssuePageState extends State<ReportPage> {
                   },
                   items: ['Electrical', 'Plumbing', 'Furniture'],
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
 
                 // Problem Description with attachment icon
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -227,31 +229,31 @@ class _ReportIssuePageState extends State<ReportPage> {
                     Icon(Icons.attachment),
                   ],
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 TextField(
                   controller: _descriptionController,
                   maxLines: 5,
                   decoration: InputDecoration(
                     hintText: 'Write a brief description of the problem',
-                    hintStyle: TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(),
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    border: const OutlineInputBorder(),
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.8),
                   ),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: _saveReport,
-                  child: Text(
-                    'Submit',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    backgroundColor: Color.fromARGB(255, 126, 194, 226),
+                    backgroundColor: const Color.fromARGB(255, 126, 194, 226),
+                  ),
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
               ],
@@ -274,14 +276,14 @@ class _ReportIssuePageState extends State<ReportPage> {
       children: [
         Text(
           label,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         SizedBox(
           width: 150,
           child: DropdownButtonFormField<String>(
             value: value,
             onChanged: onChanged,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               contentPadding: EdgeInsets.symmetric(horizontal: 12),
             ),
@@ -325,31 +327,31 @@ class FeedbackPopup extends StatelessWidget {
           children: [
             Icon(
               isSuccess ? Icons.check_circle : Icons.error,
-              color: isSuccess ? Color.fromARGB(255, 92, 138, 110) : Colors.red,
+              color: isSuccess ? const Color.fromARGB(255, 92, 138, 110) : Colors.red,
               size: 50,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               isSuccess ? 'Smooth Operation' : 'Not Smooth Operation',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               message,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14, color: Colors.black54),
+              style: const TextStyle(fontSize: 14, color: Colors.black54),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the popup
                 if (isSuccess) {
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                        builder: (context) => NavigationBarScreen()),
+                        builder: (context) => const NavigationBarScreen()),
                     (route) => false, // Clear the navigation stack
                   );
                 }
@@ -362,7 +364,7 @@ class FeedbackPopup extends StatelessWidget {
               ),
               child: Text(
                 isSuccess ? 'Continue' : 'Try again',
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
             ),
           ],

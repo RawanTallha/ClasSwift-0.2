@@ -1,5 +1,5 @@
 // ignore: unused_import
-import 'package:classwift/pages/services_page.dart';
+import 'package:classwift/pages/Availability_Page.dart';
 import 'package:flutter/material.dart';
 
 class ServicesCard extends StatelessWidget {
@@ -10,7 +10,7 @@ class ServicesCard extends StatelessWidget {
   final String buttonText;
 
 // constructor to change icon and service in every card
-  ServicesCard({
+  const ServicesCard({super.key, 
     required this.iconImagePath,
     required this.serviceName,
     required this.pageName,
@@ -31,10 +31,10 @@ class ServicesCard extends StatelessWidget {
 
         child: Card(
           child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: Color.fromARGB(255, 255, 255, 255),
+              color: const Color.fromARGB(255, 255, 255, 255),
             ),
             child: Row(
               children: [
@@ -42,10 +42,10 @@ class ServicesCard extends StatelessWidget {
                   iconImagePath,
                   height: 40,
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Text(
                   serviceName,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                 ),
               ],
             ),

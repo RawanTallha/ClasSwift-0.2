@@ -1,10 +1,6 @@
 import 'package:classwift/pages/NavigationBarScreen.dart';
-import 'package:classwift/pages/history_page.dart';
-import 'package:classwift/pages/home_page.dart';
-import 'package:classwift/pages/login_page.dart';
+import 'package:classwift/pages/Users_page.dart';
 import 'package:classwift/pages/profile_page.dart';
-import 'package:classwift/pages/report_page.dart';
-import 'package:classwift/pages/services_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,10 +18,11 @@ class MainApp extends StatelessWidget {
       //home: ServicesPage(title: 'Available Classes',),
       //home: history_page(),
       //home: NavigationBarScreen(), // we start from here
-      home: LoginPage(),
+      //home: LoginPage(),
       //home: DemoPage(),
       //home: ProfilePage()
       //home: ReportPage()
+      home:WelcomePage()
     );
   }
 }
