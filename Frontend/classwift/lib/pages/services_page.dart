@@ -6,7 +6,7 @@ import '../models/building.dart';
 class ServicesPage extends StatefulWidget {
   final String title;
 
-  ServicesPage({Key? key, required this.title}) : super(key: key);
+  const ServicesPage({Key? key, required this.title}) : super(key: key);
 
   @override
   _ServicesPageState createState() => _ServicesPageState();
@@ -35,7 +35,7 @@ class _ServicesPageState extends State<ServicesPage> {
         backgroundColor: Colors.white,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('lib/assets/wallpapers (3).png'),
             fit: BoxFit.cover, // Cover the entire screen
@@ -45,7 +45,7 @@ class _ServicesPageState extends State<ServicesPage> {
           future: futureBuilding,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else {
@@ -69,7 +69,7 @@ class _ServicesPageState extends State<ServicesPage> {
                           color: Colors.black,
                           shadows: [
                             Shadow(
-                              offset: Offset(
+                              offset: const Offset(
                                   2.0, 2.0), // Shadow offset for a better look
                               blurRadius: 5.0,
                               color: Colors.grey.withOpacity(0.5),
@@ -92,8 +92,8 @@ class _ServicesPageState extends State<ServicesPage> {
                       // This makes the GridView take the remaining space
                       child: GridView.builder(
                         physics:
-                            BouncingScrollPhysics(), // Give it a nice bounce effect
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            const BouncingScrollPhysics(), // Give it a nice bounce effect
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount:
                               2, // Adjust the number of columns based on available space
                           crossAxisSpacing: 12.0,
@@ -118,11 +118,11 @@ class _ServicesPageState extends State<ServicesPage> {
 
   Widget buildClassBox(Classroom classroom) {
     Color color = classroom.isALab
-        ? Color.fromARGB(255, 126, 181, 248)
-        : Color(0xFFD0F0C0);
+        ? const Color.fromARGB(255, 126, 181, 248)
+        : const Color(0xFFD0F0C0);
 
     return Container(
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
           minHeight: 120), // Ensure each class box has a minimum height
       child: Stack(
         children: [
@@ -163,7 +163,7 @@ class _ServicesPageState extends State<ServicesPage> {
                   decoration: BoxDecoration(
                     color: Colors.white
                         .withOpacity(0.5), // Set a transparent background
-                    borderRadius: BorderRadius.vertical(
+                    borderRadius: const BorderRadius.vertical(
                         bottom:
                             Radius.circular(12.0)), // Match the card's radius
                   ),
@@ -191,10 +191,10 @@ class _ServicesPageState extends State<ServicesPage> {
                     : Colors.green.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(4),
               ),
-              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
               child: Text(
                 classroom.isALab ? 'Lab' : 'Class',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),

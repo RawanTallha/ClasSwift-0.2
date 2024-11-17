@@ -15,12 +15,13 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   List screens = [const HomePage(), const emergencyPage(),  ProfilePage()];
   int currentIndex = 0;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Color.fromARGB(255, 83, 143, 208),
-          unselectedItemColor: Color.fromARGB(255, 181, 205, 218),
+          selectedItemColor: const Color.fromARGB(255, 83, 143, 208),
+          unselectedItemColor: const Color.fromARGB(255, 181, 205, 218),
           currentIndex: currentIndex, //changes the icon color when clicked
           onTap: (value) {
             currentIndex = value;

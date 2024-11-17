@@ -224,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
-                    child: Container(
+                    child: SizedBox(
                       height: 80,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
@@ -285,7 +285,7 @@ class _HomePageState extends State<HomePage> {
                   // Horizontal ListView for Events
                   Padding(
                     padding: EdgeInsets.only(left: 15),
-                    child: Container(
+                    child: SizedBox(
                       height: 250, // Set height for horizontal ListView
                       child: ListView(
                         scrollDirection: Axis.horizontal,
@@ -343,7 +343,7 @@ class _HomePageState extends State<HomePage> {
                   // Horizontal ListView for Recents
                   Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Container(
+                    child: SizedBox(
                       height: 250, // Set height for horizontal ListView
                       child: ListView(
                         scrollDirection: Axis.horizontal,

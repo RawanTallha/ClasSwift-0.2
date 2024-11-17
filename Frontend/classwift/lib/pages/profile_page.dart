@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,6 +16,8 @@ class MyApp extends StatelessWidget {
 }
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -29,7 +29,7 @@ class ProfilePage extends StatelessWidget {
           Container(
             width: screenSize.width,
             height: screenSize.height,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('lib/assets/wallpaper.png'), // Set your wallpaper image here
                 fit: BoxFit.cover,
@@ -109,9 +109,9 @@ class ProfilePage extends StatelessWidget {
                 color: const Color.fromARGB(255, 182, 208, 254),
               ),
             ),
-            child: CircleAvatar(
+            child: const CircleAvatar(
               radius: 62.0,
-              backgroundColor: const Color(0xFF81B2DD),
+              backgroundColor: Color(0xFF81B2DD),
               child: CircleAvatar(
                 radius: 60.0,
                 backgroundImage: AssetImage('lib/assets/pfp1.jpg'), // Use the correct asset path
@@ -148,7 +148,7 @@ class ProfilePage extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: Image.asset(
-                'assets/id_card.jpg', // Ensure the path is correct
+                'lib/assets/IDpic.jpg', // Ensure the path is correct
                 width: double.infinity,
                 height: 200.0,
                 fit: BoxFit.cover,
@@ -199,8 +199,8 @@ class ProfilePage extends StatelessWidget {
       leading: Icon(icon, color: const Color(0xFF224B65)),
       title: Text(
         title,
-        style: TextStyle(
-          color: const Color(0xFF224B65),
+        style: const TextStyle(
+          color: Color(0xFF224B65),
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -216,6 +216,8 @@ class ProfilePage extends StatelessWidget {
 
 // Each of these screens are placeholders. Implement their logic as needed.
 class EditProfilePage extends StatelessWidget {
+  const EditProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -231,6 +233,8 @@ class EditProfilePage extends StatelessWidget {
 }
 
 class ChangePasswordPage extends StatelessWidget {
+  const ChangePasswordPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -246,6 +250,8 @@ class ChangePasswordPage extends StatelessWidget {
 }
 
 class NotificationSettingsPage extends StatelessWidget {
+  const NotificationSettingsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -261,6 +267,8 @@ class NotificationSettingsPage extends StatelessWidget {
 }
 
 class PastReportStatusPage extends StatelessWidget {
+  const PastReportStatusPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -276,6 +284,8 @@ class PastReportStatusPage extends StatelessWidget {
 }
 
 class ContactUsPage extends StatelessWidget {
+  const ContactUsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -291,6 +301,8 @@ class ContactUsPage extends StatelessWidget {
 }
 
 class ReportIssuePage extends StatelessWidget {
+  const ReportIssuePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

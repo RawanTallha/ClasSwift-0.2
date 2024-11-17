@@ -15,7 +15,7 @@ class ReportHistoryCard extends StatelessWidget {
   final reportImgPath;
 
 // constructor to change icon and service in every card
-  ReportHistoryCard({
+  const ReportHistoryCard({super.key, 
     required this.reportID,
     required this.reportDate,
     required this.reportBuilding,
@@ -34,33 +34,33 @@ class ReportHistoryCard extends StatelessWidget {
         elevation: 2,
 
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        color: Color.fromARGB(
+        color: const Color.fromARGB(
             255, 255, 233, 167), // Light background color like in the image
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
               Center(
                 child: Text(
-                  'Report ID: ${reportID}',
-                  style: TextStyle(
+                  'Report ID: $reportID',
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ), // Horizontal line under Report ID
-              Text('Date: ${reportDate}'),
-              Text('Building: ${reportBuilding}'),
-              Text('Floor: ${reportFloor}'),
-              Text('Room: ${reportRoomNo}'),
-              Text('Issue type: ${reportIssue}'),
-              Text('Problem description: ${reportDescribtion}'),
+              Text('Date: $reportDate'),
+              Text('Building: $reportBuilding'),
+              Text('Floor: $reportFloor'),
+              Text('Room: $reportRoomNo'),
+              Text('Issue type: $reportIssue'),
+              Text('Problem description: $reportDescribtion'),
 
               // button to either show more/ update status
               // Padding(
