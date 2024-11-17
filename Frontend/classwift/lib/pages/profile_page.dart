@@ -1,19 +1,6 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Profile Page',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ProfilePage(),
-    );
-  }
-}
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -56,29 +43,32 @@ class ProfilePage extends StatelessWidget {
                 crossAxisAlignment:
                     CrossAxisAlignment.center, // Center contents horizontally
                 children: [
+                  SizedBox(
+                    height: 40,
+                  ),
                   // Profile Picture Section
                   _buildProfilePicture(),
 
                   const SizedBox(
                       height: 20.0), // Space between picture and name
                   const Text(
-                    'User Name',
+                    'Peter parker',
                     textAlign: TextAlign.center, // Center the text
                     style: TextStyle(
                       fontSize: 28.0,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 83, 133, 193),
+                      color: Color.fromARGB(255, 93, 93, 93),
                     ),
                   ),
 
                   const SizedBox(
-                      height: 16.0), // Space between name and additional info
+                      height: 10.0), // Space between name and additional info
                   const Text(
-                    'user.email@example.com',
+                    'Software Engineering',
                     textAlign: TextAlign.center, // Center the text
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Color.fromARGB(179, 45, 98, 189),
+                      color: Color.fromARGB(255, 128, 128, 128),
                     ),
                   ),
 
@@ -100,66 +90,57 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildProfilePicture() {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 10.0), // Space before the avatar
-          // Border around profile picture
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                width: 4.0,
-                color: const Color.fromARGB(255, 182, 208, 254),
-              ),
-            ),
-            child: const CircleAvatar(
-              radius: 62.0,
-              backgroundColor: Color(0xFF81B2DD),
-              child: CircleAvatar(
-                radius: 60.0,
-                backgroundImage: AssetImage(
-                    'lib/assets/logo.png'), // Use the correct asset path
-                backgroundColor:
-                    Colors.grey, // Fallback color if image fails to load
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildProfilePicture() {
+  //   return Center(
+  //     child: Column(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         const SizedBox(height: 10.0), // Space before the avatar
+  //         // Border around profile picture
+  //         Container(
+  //           decoration: BoxDecoration(
+  //             shape: BoxShape.circle,
+  //             border: Border.all(
+  //               width: 4.0,
+  //               color: Color.fromARGB(200, 142, 187, 227),
+  //             ),
+  //           ),
+  //           child: const CircleAvatar(
+  //             radius: 62.0,
+  //             backgroundColor: Color.fromARGB(200, 142, 187, 227),
+  //             child: CircleAvatar(
+  //               radius: 60.0,
+  //               backgroundImage: AssetImage(
+  //                   'lib/assets/person.png'), // Use the correct asset path
+  //               backgroundColor:
+  //                   Colors.grey, // Fallback color if image fails to load
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _buildIdCard() {
     return Card(
-      elevation: 15.0,
+      elevation: 8.0,
       shadowColor: Colors.black54,
-      color: Colors.white,
+      color: const Color.fromARGB(200, 142, 187, 227),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            const Text(
-              'ID Card',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF224B65),
-              ),
-            ),
-            const SizedBox(height: 8.0),
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: Image.asset(
-                'lib/assets/IDpic.jpg', // Ensure the path is correct
-                width: double.infinity,
-                height: 200.0,
-                fit: BoxFit.cover,
+                'lib/assets/uniCard.png', // Ensure the path is correct
+                // width: double.infinity,
+                // height: 265.0,
+                fit: BoxFit.fill,
               ),
             ),
           ],
@@ -169,32 +150,50 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget _buildProfileSettings(BuildContext context) {
-    return Card(
-      elevation: 15.0,
-      shadowColor: Colors.black54,
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Profile Settings',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF224B65),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          //color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Divider(),
+              SizedBox(
+                height: 30,
               ),
-            ),
-            const SizedBox(height: 16.0),
-            _buildListTile(context, Icons.person, 'View Profile', EditProfilePage()),
-            _buildListTile(context, Icons.lock, 'Change Password', ChangePasswordPage()),
-            _buildListTile(context, Icons.notifications, 'Notifications', NotificationSettingsPage()),
-            _buildListTile(context, Icons.report_problem, 'Report Issue', ReportIssuePage()),
-          ],
+              const Text(
+                'Profile Settings',
+                style: TextStyle(
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF224B65),
+                ),
+              ),
+              const SizedBox(height: 26.0),
+              Card(
+                color: Colors.grey[200],
+                child: _buildListTile(
+                    context, Icons.person, 'View Profile', ViewProfilePage()),
+              ),
+              Card(
+                color: Colors.grey[200],
+                child: _buildListTile(context, Icons.lock, 'Reset Password',
+                    ChangePasswordPage()),
+              ),
+              Card(
+                color: Colors.grey[200],
+                child: _buildListTile(context, Icons.notifications,
+                    'Notifications', NotificationSettingsPage()),
+              ),
+              Card(
+                color: Colors.grey[200],
+                child: _buildListTile(context, Icons.report_problem,
+                    'Report Issue', ReportIssuePage()),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -221,38 +220,229 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-// Each of these screens are placeholders. Implement their logic as needed.
-class EditProfilePage extends StatelessWidget {
-  const EditProfilePage({super.key});
+class ViewProfilePage extends StatefulWidget {
+  const ViewProfilePage({super.key});
+
+  @override
+  State<ViewProfilePage> createState() => _ViewProfilePageState();
+}
+
+class _ViewProfilePageState extends State<ViewProfilePage> {
+  // Sample retrieved data
+  String userName = "Peter Parker";
+  String StudentID = "2211116";
+  String major = "Software Engineering";
+  String collage = "Computer Science and Engineering";
+  String email = "2211116@uj.edu.sa";
+  String phoneNumber = "+966 573 829 3822";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Profile'),
-        backgroundColor: const Color(0xFF81B2DD),
+        title: Text('View profile'),
       ),
-      body: const Center(
-        child: Text('Edit Profile Screen - Implement editing logic here'),
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              'lib/assets/wallpapers (4).png', // Replace with your image path
+              fit: BoxFit.cover,
+            ),
+          ),
+          SafeArea(
+            child: SingleChildScrollView(
+              // Wrap the entire content in a SingleChildScrollView
+              padding: const EdgeInsets.all(40.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      _buildProfilePicture(),
+
+                      const SizedBox(
+                          width: 20.0), // Space between picture and name
+                      Column(
+                        children: [
+                          const Text(
+                            'Peter parker',
+                            textAlign: TextAlign.center, // Center the text
+                            style: TextStyle(
+                              fontSize: 28.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 93, 93, 93),
+                            ),
+                          ),
+                          const Text(
+                            'Software Engineering',
+                            textAlign: TextAlign.center, // Center the text
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Color.fromARGB(255, 128, 128, 128),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  _buildTextField('Name', 'Enter your name', userName),
+                  SizedBox(height: 16),
+                  _buildTextField('Email', 'Enter your email', StudentID),
+                  SizedBox(height: 16),
+                  _buildTextField(
+                      'Phone Number', 'Enter your phone number', major),
+                  SizedBox(height: 16),
+                  _buildTextField('Collage', 'Enter your collage', collage),
+                  SizedBox(height: 16),
+                  _buildTextField('Email', 'Enter your email', email),
+                  SizedBox(height: 16),
+                  _buildTextField(
+                      'Phone Number', 'Enter your phone number', phoneNumber),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class ChangePasswordPage extends StatelessWidget {
-  const ChangePasswordPage({super.key});
+// widgets for view profile
+Widget _buildTextField(String label, String hint, String retrievedData) {
+  // Create a TextEditingController to manage the text field
+  TextEditingController controller = TextEditingController(text: retrievedData);
+
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        label,
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      SizedBox(height: 8),
+      Container(
+        color: Colors.white,
+        child: TextField(
+          controller: controller, // Use the controller to set the text
+          readOnly: true, // Make the text field uneditable
+          decoration: InputDecoration(
+            hintText: hint,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+class ChangePasswordPage extends StatefulWidget {
+  @override
+  _PasswordResetScreenState createState() => _PasswordResetScreenState();
+}
+
+class _PasswordResetScreenState extends State<ChangePasswordPage> {
+  final _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Change Password'),
-        backgroundColor: const Color(0xFF81B2DD),
+        title: Text('Reset Password'),
       ),
-      body: const Center(
-        child: Text(
-            'Change Password Screen - Implement password change logic here'),
-      ),
+      body: Stack(children: [
+        // Background Image
+        Positioned.fill(
+          child: Image.asset(
+            'lib/assets/wallpapers (4).png', // Replace with your image path
+            fit: BoxFit.cover,
+          ),
+        ),
+        SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Reset your password',
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Enter the email address you used to register.',
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.w200),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      color: Colors.white,
+                      child: TextField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          labelText: 'Email Address',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        // Handle "Forgot email address" logic here
+                        print('Forgot email address');
+                      },
+                      child: Text(
+                        'Forgot or lost your email address?',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 40),
+                Center(
+                  child: SizedBox(
+                    width:
+                        double.infinity, // Makes the button take the full width
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Add your action here
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Message Sent!")),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 16), // Matches text field height
+                        backgroundColor: Colors.black, // Customize button color
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              8), // Matches text field corners
+                        ),
+                      ),
+                      child: Text(
+                        "Send Instructions",
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ]),
     );
   }
 }
@@ -275,54 +465,212 @@ class NotificationSettingsPage extends StatelessWidget {
   }
 }
 
-class PastReportStatusPage extends StatelessWidget {
-  const PastReportStatusPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Past Report Status'),
-        backgroundColor: const Color(0xFF81B2DD),
-      ),
-      body: const Center(
-        child: Text(
-            'Past Report Status Screen - Implement past report logic here'),
-      ),
-    );
-  }
-}
-
-class ContactUsPage extends StatelessWidget {
-  const ContactUsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Contact Us'),
-        backgroundColor: const Color(0xFF81B2DD),
-      ),
-      body: const Center(
-        child: Text('Contact Us Screen - Implement contact us logic here'),
-      ),
-    );
-  }
-}
-
-class ReportIssuePage extends StatelessWidget {
+class ReportIssuePage extends StatefulWidget {
   const ReportIssuePage({super.key});
+
+  @override
+  State<ReportIssuePage> createState() => _ReportIssuePageState();
+}
+
+class _ReportIssuePageState extends State<ReportIssuePage> {
+  // Issue choices and their states
+  final Map<String, bool> issueChoices = {
+    'Loading events': false,
+    'Showing available classes': false,
+    'Filling up a report': false,
+    'Submitting your report': false,
+    'Other': false,
+  };
+
+  // Selected contact preference
+  String? selectedContact;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Report Issue'),
-        backgroundColor: const Color(0xFF81B2DD),
+        backgroundColor: Colors.transparent,
       ),
-      body: const Center(
-        child: Text('Report Issue Screen - Implement report issue logic here'),
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              'lib/assets/wallpapers (4).png', // Replace with your image path
+              fit: BoxFit.cover,
+            ),
+          ),
+          SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 80),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            'Report an issue with ClasSwift',
+                            style: TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'We are sorry you are facing trouble. Please provide the details below so we can assist you as quickly as possible.',
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.w200),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Divider(endIndent: 30, indent: 30),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  // Issue Type Section
+                  const Text(
+                    'Which of the following options best describes the type of issue you are experiencing?',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
+                  // Checkboxes for issue types
+                  ...issueChoices.keys.map((key) {
+                    return CheckboxListTile(
+                      title: Text(key),
+                      value: issueChoices[key],
+                      onChanged: (value) {
+                        setState(() {
+                          issueChoices[key] = value!;
+                        });
+                      },
+                    );
+                  }).toList(),
+                  const SizedBox(height: 12),
+                  // Description Field
+                  const Text(
+                    'Please describe the problem you are experiencing in the space below. Be as descriptive as possible so we can be sure to help you as best as we can.',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 12),
+                  Container(
+                    color: Colors.white,
+                    child: TextField(
+                      maxLines: 4,
+                      decoration: InputDecoration(
+                        hintText:
+                            'Ex. Every time I click reports history, it disappears instead of taking me to the detailed history page.',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  // Contact Preference Section
+                  const Text(
+                    'How would you like us to contact you? Please select an option from the list below.',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 12),
+                  RadioListTile(
+                    title: const Text('Phone call'),
+                    value: 'phone',
+                    groupValue: selectedContact,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedContact = value.toString();
+                      });
+                    },
+                  ),
+                  RadioListTile(
+                    title: const Text('Text message'),
+                    value: 'text',
+                    groupValue: selectedContact,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedContact = value.toString();
+                      });
+                    },
+                  ),
+                  RadioListTile(
+                    title: const Text('Email'),
+                    value: 'email',
+                    groupValue: selectedContact,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedContact = value.toString();
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  // Submit Button
+                  Center(
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Message Sent!")),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 16), // Button height
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          "Send Message",
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
+}
+
+Widget _buildProfilePicture() {
+  return Center(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 10.0), // Space before the avatar
+        // Border around profile picture
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              width: 4.0,
+              color: Color.fromARGB(200, 142, 187, 227),
+            ),
+          ),
+          child: const CircleAvatar(
+            radius: 62.0,
+            backgroundColor: Color.fromARGB(200, 142, 187, 227),
+            child: CircleAvatar(
+              radius: 60.0,
+              backgroundImage: AssetImage(
+                  'lib/assets/person.png'), // Use the correct asset path
+              backgroundColor:
+                  Colors.grey, // Fallback color if image fails to load
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }

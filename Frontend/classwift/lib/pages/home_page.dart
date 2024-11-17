@@ -3,8 +3,10 @@
 import 'package:classwift/card/event_card.dart';
 import 'package:classwift/card/report_history_card.dart';
 import 'package:classwift/card/services_card.dart';
+import 'package:classwift/pages/contact_page.dart';
 import 'package:classwift/pages/history_page.dart';
 import 'package:classwift/pages/login_page.dart';
+import 'package:classwift/pages/profile_page.dart';
 import 'package:classwift/pages/report_page.dart';
 import 'package:classwift/pages/Availability_Page.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20),
             ListTile(
               leading: Icon(Icons.settings,
-                  color: Color.fromARGB(255, 142, 187, 227)),
+                  color: Color.fromARGB(255, 121, 89, 178)),
               title: Text('Settings'),
               onTap: () {
                 // Action for Settings
@@ -61,7 +63,7 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               leading: Icon(Icons.info_outline_rounded,
-                  color: Color.fromARGB(255, 142, 187, 227)),
+                  color: Color.fromARGB(255, 121, 89, 178)),
               title: Text('About us'),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -74,7 +76,9 @@ class _HomePageState extends State<HomePage> {
                   color: Color.fromARGB(255, 121, 89, 178)),
               title: Text('Contact Us'),
               onTap: () {
-                // Action for Settings
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ContactUsPage();
+                }));
               },
             ),
             ListTile(

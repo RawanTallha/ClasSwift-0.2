@@ -1,21 +1,6 @@
 import 'package:classwift/pages/NavigationBarScreen.dart';
 import 'package:flutter/material.dart';
-// Import your HomePage
-import 'home_page.dart'; //path of homepage
-
-// class Login_page extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Login Page',
-//       debugShowCheckedModeBanner: false,
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: LoginPage(),
-//     );
-//   }
-// }
+import 'home_page.dart'; 
 
 class LoginPage extends StatelessWidget {
   final TextEditingController idController = TextEditingController();

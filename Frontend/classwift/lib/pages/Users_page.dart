@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart'; // Import the LoginPage
 
-
 class WelcomePage extends StatefulWidget {
   @override
   _WelcomePageState createState() => _WelcomePageState();
@@ -48,7 +47,7 @@ class _WelcomePageState extends State<WelcomePage>
                   color: Color(0xFF224B65),
                 ),
               ),
-              const SizedBox(height: 20.0), // Space between text and logo
+              const SizedBox(height: 30.0), // Space between text and logo
               ScaleTransition(
                 scale: _animation,
                 child: Image.asset(
