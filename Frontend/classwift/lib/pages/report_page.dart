@@ -36,8 +36,8 @@ class _ReportIssuePageState extends State<ReportPage> {
       final jsonData = json.decode(await file.readAsString());
       final buildingClassrooms = jsonData['classrooms'] as List<dynamic>;
 
-      classrooms
-          .addAll(buildingClassrooms.map((item) => item as Map<String, dynamic>));
+      classrooms.addAll(
+          buildingClassrooms.map((item) => item as Map<String, dynamic>));
       floors.addAll(classrooms.map((room) => room['floor'].toString()).toSet());
     } catch (e) {
       print("Error loading data: $e");
@@ -245,7 +245,8 @@ class _ReportIssuePageState extends State<ReportPage> {
                 ElevatedButton(
                   onPressed: _saveReport,
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -327,7 +328,9 @@ class FeedbackPopup extends StatelessWidget {
           children: [
             Icon(
               isSuccess ? Icons.check_circle : Icons.error,
-              color: isSuccess ? const Color.fromARGB(255, 92, 138, 110) : Colors.red,
+              color: isSuccess
+                  ? const Color.fromARGB(255, 92, 138, 110)
+                  : Colors.red,
               size: 50,
             ),
             const SizedBox(height: 16),

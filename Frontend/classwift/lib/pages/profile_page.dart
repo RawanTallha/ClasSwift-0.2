@@ -157,7 +157,7 @@ class ProfilePage extends StatelessWidget {
         child: Container(
           //color: Colors.white,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Divider(),
               SizedBox(
@@ -531,12 +531,12 @@ class _ReportIssuePageState extends State<ReportIssuePage> {
                   ),
                   Divider(endIndent: 30, indent: 30),
                   SizedBox(
-                    height: 30,
+                    height: 50,
                   ),
                   // Issue Type Section
                   const Text(
                     'Which of the following options best describes the type of issue you are experiencing?',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   // Checkboxes for issue types
                   ...issueChoices.keys.map((key) {
@@ -550,11 +550,11 @@ class _ReportIssuePageState extends State<ReportIssuePage> {
                       },
                     );
                   }).toList(),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 30),
                   // Description Field
                   const Text(
                     'Please describe the problem you are experiencing in the space below. Be as descriptive as possible so we can be sure to help you as best as we can.',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 12),
                   Container(
@@ -570,11 +570,11 @@ class _ReportIssuePageState extends State<ReportIssuePage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 30),
                   // Contact Preference Section
                   const Text(
                     'How would you like us to contact you? Please select an option from the list below.',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 12),
                   RadioListTile(
@@ -607,7 +607,7 @@ class _ReportIssuePageState extends State<ReportIssuePage> {
                       });
                     },
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 30),
                   // Submit Button
                   Center(
                     child: SizedBox(

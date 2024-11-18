@@ -39,31 +39,31 @@ class _WelcomePageState extends State<WelcomePage>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              ScaleTransition(
+                scale: _animation,
+                child: Image.asset(
+                  'lib/assets/logo.png', // Change this to your logo's path
+                  width: 300, // Desired logo size
+                ),
+              ),
+              const SizedBox(height: 20.0),
               const Text(
-                "Welcome to",
+                "CLASSWIFT",
                 style: TextStyle(
                   fontSize: 32.0,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF224B65),
                 ),
               ),
-              const SizedBox(height: 30.0), // Space between text and logo
-              ScaleTransition(
-                scale: _animation,
-                child: Image.asset(
-                  'lib/assets/logo.png', // Change this to your logo's path
-                  width: 160, // Desired logo size
-                ),
-              ),
-              const SizedBox(height: 40.0), // Space between logo and question
+              const SizedBox(height: 10.0),
               const Text(
-                "Who are you?",
+                "From classes to repairs, ClasSwift cares",
                 style: TextStyle(
-                  fontSize: 24.0,
+                  fontSize: 20.0,
                   color: Color(0xFF224B65),
                 ),
               ),
-              const SizedBox(height: 40.0), // Space before the circles
+              const SizedBox(height: 200.0), // Space before the circles
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -98,7 +98,7 @@ class _WelcomePageState extends State<WelcomePage>
               color: const Color(0xFF81B2DD),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black26,
+                  color: Color.fromARGB(255, 187, 187, 187),
                   blurRadius: 8.0,
                   offset: Offset(2, 2),
                 ),
@@ -116,7 +116,7 @@ class _WelcomePageState extends State<WelcomePage>
             role,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              color: Color.fromARGB(255, 0, 0, 0),
+              color: Color.fromARGB(255, 68, 70, 117),
               fontWeight: FontWeight.bold,
             ),
           ),
