@@ -233,13 +233,13 @@ class _HomePageState extends State<HomePage> {
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
-                          ServicesCard(
-                            serviceName: 'View availability',
-                            iconImagePath: 'lib/assets/users-class.png',
-                            pageTitle: 'View Availability',
-                            buttonText: 'View now!',
-                            pageName: ServicesPage(title: 'View Availability'),
-                          ),
+                          // ServicesCard(
+                          //   serviceName: 'View availability',
+                          //   iconImagePath: 'lib/assets/users-class.png',
+                          //   pageTitle: 'View Availability',
+                          //   buttonText: 'View now!',
+                          //   pageName: ServicesPage(title: 'View Availability'),
+                          // ),
                           ServicesCard(
                             serviceName: 'Report an issue',
                             iconImagePath: 'lib/assets/file-edit.png',

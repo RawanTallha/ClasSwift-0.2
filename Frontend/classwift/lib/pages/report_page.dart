@@ -301,7 +301,6 @@ class _ReportIssuePageState extends State<ReportPage> {
   }
 }
 
-// FeedbackPopup remains unchanged.
 class FeedbackPopup extends StatelessWidget {
   final String message;
   final bool isSuccess;
